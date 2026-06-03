@@ -91,17 +91,15 @@ function Card({
                 
                 
                 { detalhes ? 
-                <div>
-
-                
-                    <button className="delete-btn">
-                        Edit
-                    </button>
+                <>
+                    <Link className="edit-btn" to={`/construction/edit/${id}`}>
+                        Editar
+                    </Link>
 
                     <button className="delete-btn" onClick={onDelete}>
-                        Delete
+                        Excluir
                     </button>
-                </div>
+                </>
                 : ""
                 }
             </div>

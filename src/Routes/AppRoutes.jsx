@@ -8,6 +8,7 @@ import AllConstructions from "../Pages/AllConstructions"
 import Create from "../Pages/Create"
 import ProtectedRoute from "./ProtectedRoutes"
 import ShowConstruction from "../Pages/ShowConstruction"
+import EditConstruction from "../Pages/EditConstruction"
 import { AuthProvider } from "../context/AuthContext"
 
 function AppRoutes() {
@@ -39,6 +40,12 @@ function AppRoutes() {
                         <ShowConstruction />
                     </ProtectedRoute>
                 }/>
+
+                <Route path="/construction/edit/:id" element={
+                    <ProtectedRoute>
+                        <EditConstruction />
+                    </ProtectedRoute>
+                } />
             </Routes>
             </AuthProvider>
         </BrowserRouter>

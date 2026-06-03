@@ -94,7 +94,8 @@
     gap: 15px;
 }
 
-.card-buttons button{
+.card-buttons button,
+.card-buttons a{
     flex: 1;
 
     padding: 14px;
@@ -110,6 +111,12 @@
     cursor: pointer;
 
     transition: 0.3s;
+
+    text-decoration: none;
+    text-align: center;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .show-btn{
@@ -120,6 +127,18 @@
 
 .show-btn:hover{
     background: #b88700;
+
+    transform: translateY(-2px);
+}
+
+.edit-btn{
+    background: #2980b9;
+
+    color: white;
+}
+
+.edit-btn:hover{
+    background: #2572a5;
 
     transform: translateY(-2px);
 }
