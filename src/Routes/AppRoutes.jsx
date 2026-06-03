@@ -18,15 +18,11 @@ function AppRoutes() {
             <Routes>
                 {/* Rotas públicas */}
                 <Route path="/" element={<App />} />
+                
                 <Route path="/login" element={<Login />} />
                 <Route path="/register" element={<Register />} />
 
                 {/* Rotas protegidas */}
-                <Route path="/home" element={
-                    <ProtectedRoute>
-                        <Home />
-                    </ProtectedRoute>
-                } />
                 <Route path="/allconstructions" element={
                     <ProtectedRoute>
                         <AllConstructions />
@@ -38,7 +34,7 @@ function AppRoutes() {
                     </ProtectedRoute>
                 } />
 
-                <Route path="/show/:id" element={
+                <Route path="/construction/:id" element={
                     <ProtectedRoute>
                         <ShowConstruction />
                     </ProtectedRoute>

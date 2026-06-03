@@ -33,8 +33,9 @@ function Login() {
                 localStorage.setItem('token', response.data.token);
             }
 
+
             alert("Você entrou na conta com sucesso!!!");
-            navigate("/home");
+            navigate("/");
 
         } catch (error) {
             if (error.response && error.response.status === 422) {

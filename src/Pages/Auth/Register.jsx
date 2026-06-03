@@ -28,7 +28,7 @@ function Register(){
         const response = await api.post('/register', formData);
         alert("Conta criada com sucesso!!!")
 
-        navigate("/home")
+        navigate("/")
 
         if(error.response && error.response.status === 422){
             alert("Erro: " + Object.values(error.response.data.errors).flat().join(", "));

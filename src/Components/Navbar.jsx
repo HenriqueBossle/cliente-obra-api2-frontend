@@ -36,10 +36,9 @@ function Navbar() {
 
                 {isLogged ? (
                     <>
-                        <Link to="/home">
+                        <Link to="/">
                             Home
                         </Link>
-
                         <Link to="/allconstructions">
                             Construções
                         </Link>

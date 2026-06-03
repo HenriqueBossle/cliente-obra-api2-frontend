@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import "./Card.css";
 
 function Card({
+    id,
     construction_name,
     builder_name,
     builder_phone,
@@ -13,9 +14,14 @@ function Card({
     status,
     volume,
     date,
-    notes
-}){
+    notes,
 
+    detalhes,
+    onDelete
+})
+
+{
+ console.log(id)
     return(
         <div className="card-container">
 
@@ -28,6 +34,9 @@ function Card({
             </div>
 
             <div className="card-body">
+                <p>
+                    <strong>ID:</strong> {id}
+                </p>
 
                 <p>
                     <strong>Cliente:</strong> {builder_name}
@@ -71,16 +80,30 @@ function Card({
 
             </div>
 
+            
+
             <div className="card-buttons">
 
-                <Link className="show-btn" to="/show">
+            {detalhes ? "" : 
+                <Link className="show-btn" to={`/construction/${id}`}>
                     Ver mais
-                </Link>
+                </Link>}
+                
+                
+                { detalhes ? 
+                <div>
 
-                <button className="delete-btn">
-                    Delete
-                </button>
+                
+                    <button className="delete-btn">
+                        Edit
+                    </button>
 
+                    <button className="delete-btn" onClick={onDelete}>
+                        Delete
+                    </button>
+                </div>
+                : ""
+                }
             </div>
 
         </div>

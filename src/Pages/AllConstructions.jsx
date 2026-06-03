@@ -13,6 +13,8 @@ function AllConstructions() {
     const token = localStorage.getItem('token');
     const { authenticated, logout } = useContext(AuthContext);
 
+    console.log(token)
+
     useEffect(() => {
 
         const fetchConstructions = async () => {
@@ -79,6 +81,7 @@ function AllConstructions() {
 
                         <Card
                             key={c.id}
+                            id={c.id}
                             construction_name={c.construction_name}
                             builder_name={c.builder_name}
                             builder_phone={c.builder_phone}
@@ -91,7 +94,10 @@ function AllConstructions() {
                             volume={c.volume}
                             date={c.date}
                             notes={c.notes}
+
+                            detalhes={false}
                         />
+
 
                     ))}
 
