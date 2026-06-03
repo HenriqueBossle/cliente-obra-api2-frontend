@@ -1,168 +1,212 @@
-.card-container{
-    width: 100%;
-
-    background: rgba(255,255,255,0.95);
-
-    border-radius: 20px;
-
-    padding: 25px;
-
-    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
-
-    transition: 0.3s;
-
-    display: flex;
-    flex-direction: column;
-
-    gap: 20px;
+.card-container {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.97);
+  border-radius: var(--border-radius-md);
+  padding: 30px;
+  box-shadow: var(--shadow-md);
+  transition: var(--transition-smooth);
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  position: relative;
+  border: 1px solid rgba(18, 24, 36, 0.08);
+  border-top: 4px solid var(--construction-steel);
+  overflow: hidden;
 }
 
-.card-container:hover{
-    transform: translateY(-5px);
-
-    box-shadow: 0 12px 30px rgba(0,0,0,0.2);
+.card-container:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-hover);
+  border-top-color: var(--construction-orange);
 }
 
-.card-header{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-
-    gap: 10px;
-
-    border-bottom: 1px solid #ddd;
-
-    padding-bottom: 15px;
+/* Indicador sutil de fundo como padrão industrial */
+.card-container::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 60px;
+  height: 60px;
+  background: linear-gradient(135deg, transparent 50%, rgba(243, 156, 18, 0.05) 50%);
+  z-index: 0;
+  pointer-events: none;
 }
 
-.card-header h2{
-    color: #d49b00;
-
-    font-size: 1.5rem;
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 15px;
+  border-bottom: 2px solid var(--construction-concrete);
+  padding-bottom: 16px;
+  z-index: 1;
 }
 
-.status{
-    padding: 8px 14px;
-
-    border-radius: 999px;
-
-    font-size: 0.9rem;
-
-    font-weight: bold;
-
-    color: white;
+.card-header h2 {
+  color: var(--construction-dark);
+  font-family: var(--font-title);
+  font-size: 1.35rem;
+  font-weight: 800;
+  line-height: 1.2;
 }
 
-.status.em-andamento{
-    background: #d49b00;
+/* Status Badges */
+.status {
+  padding: 6px 14px;
+  border-radius: 99px;
+  font-family: var(--font-title);
+  font-size: 0.75rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--construction-black);
+  white-space: nowrap;
+  box-shadow: var(--shadow-sm);
 }
 
-.status.finalizada{
-    background: #2e9e41;
+.status.em-andamento,
+.status.em_andamento {
+  background-color: var(--status-progress-bg-orange);
 }
 
-.status.planejamento{
-    background: #555;
+.status.finalizada {
+  background-color: var(--status-finished-bg);
 }
 
-.card-body{
-    display: flex;
-    flex-direction: column;
-
-    gap: 10px;
+.status.planejamento {
+  background-color: var(--status-planning-bg);
 }
 
-.card-body p{
-    color: #333;
-
-    line-height: 1.5;
+/* Corpo do Card em formato de ficha técnica */
+.card-body {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  z-index: 1;
 }
 
-.notes{
-    margin-top: 10px;
-
-    background: #f5f5f5;
-
-    padding: 12px;
-
-    border-radius: 12px;
+.card-body p {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 0;
+  border-bottom: 1px dashed rgba(18, 24, 36, 0.08);
+  font-size: 0.92rem;
+  color: var(--construction-dark);
+  font-family: var(--font-body);
 }
 
-.card-buttons{
-    display: flex;
+.card-body p:last-of-type {
+  border-bottom: none;
+}
 
-    gap: 15px;
+.card-body p strong {
+  color: var(--construction-steel);
+  font-weight: 600;
+  font-family: var(--font-body);
+}
+
+/* Bloco de Observações */
+.notes {
+  margin-top: 14px !important;
+  background: var(--construction-concrete);
+  padding: 14px;
+  border-radius: var(--border-radius-sm);
+  border-left: 3px solid var(--construction-orange);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start !important;
+  gap: 6px !important;
+  font-size: 0.88rem !important;
+}
+
+.notes strong {
+  font-family: var(--font-title);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Botões do Card */
+.card-buttons {
+  display: flex;
+  gap: 12px;
+  margin-top: auto;
+  z-index: 1;
 }
 
 .card-buttons button,
-.card-buttons a{
-    flex: 1;
-
-    padding: 14px;
-
-    border: none;
-
-    border-radius: 12px;
-
-    font-size: 1rem;
-
-    font-weight: bold;
-
-    cursor: pointer;
-
-    transition: 0.3s;
-
-    text-decoration: none;
-    text-align: center;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
+.card-buttons a {
+  flex: 1;
+  padding: 12px 18px;
+  border: none;
+  border-radius: var(--border-radius-sm);
+  font-family: var(--font-title);
+  font-size: 0.88rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: var(--transition-smooth);
+  text-decoration: none;
+  text-align: center;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
-.show-btn{
-    background: #d49b00;
-
-    color: white;
+/* Botão Ver mais */
+.show-btn {
+  background: var(--construction-steel);
+  color: var(--construction-white);
 }
 
-.show-btn:hover{
-    background: #b88700;
-
-    transform: translateY(-2px);
+.show-btn:hover {
+  background: var(--construction-dark);
+  transform: translateY(-2px);
 }
 
-.edit-btn{
-    background: #2980b9;
-
-    color: white;
+/* Botão Editar */
+.edit-btn {
+  background: var(--construction-orange);
+  color: var(--construction-white);
 }
 
-.edit-btn:hover{
-    background: #2572a5;
-
-    transform: translateY(-2px);
+.edit-btn:hover {
+  background: var(--construction-orange-hover);
+  transform: translateY(-2px);
 }
 
-.delete-btn{
-    background: #c0392b;
-
-    color: white;
+/* Botão Excluir */
+.delete-btn {
+  background: #c0392b;
+  color: var(--construction-white);
 }
 
-.delete-btn:hover{
-    background: #a5281b;
-
-    transform: translateY(-2px);
+.delete-btn:hover {
+  background: #a5281b;
+  transform: translateY(-2px);
 }
 
-@media(max-width: 600px){
+@media(max-width: 600px) {
+  .card-container {
+    padding: 24px;
+  }
+  
+  .card-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
 
-    .card-header{
-        flex-direction: column;
-        align-items: flex-start;
-    }
-
-    .card-buttons{
-        flex-direction: column;
-    }
+  .card-buttons {
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .card-buttons button,
+  .card-buttons a {
+    width: 100%;
+  }
 }

@@ -1,263 +1,247 @@
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: Arial, Helvetica, sans-serif;
+.edit-container {
+  width: 100%;
+  min-height: 100vh;
+  background-image: url('https://images.unsplash.com/photo-1504307651254-35680f356dfd?q=80&w=2070&auto=format&fit=crop');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  padding: 80px 20px 40px;
 }
 
-.edit-container{
-    width: 100%;
-    min-height: 100vh;
-
-    background-image: url('https://images.unsplash.com/photo-1504307651254-35680f356dfd?q=80&w=2070&auto=format&fit=crop');
-
-    background-size: cover;
-    background-position: center;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    position: relative;
-
-    padding: 30px;
+.edit-container .overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--bg-dark-overlay);
+  z-index: 0;
 }
 
-.overlay{
-    position: absolute;
-
-    width: 100%;
-    height: 100%;
-
-    background: rgba(0,0,0,0.65);
+.edit-card {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 650px; /* Reduzido para melhor visual com campos empilhados */
+  background: rgba(255, 255, 255, 0.97);
+  border-radius: var(--border-radius-lg);
+  padding: 45px 40px;
+  box-shadow: var(--shadow-lg);
+  border-top: 5px solid var(--construction-orange);
+  animation: fadeIn 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
-.edit-card{
-    position: relative;
-    z-index: 1;
-
-    width: 100%;
-    max-width: 950px;
-
-    background: rgba(255,255,255,0.95);
-
-    border-radius: 24px;
-
-    padding: 40px;
-
-    backdrop-filter: blur(8px);
-
-    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-
-    animation: fadeIn 0.7s ease;
+.edit-card h1 {
+  text-align: center;
+  color: var(--construction-dark);
+  font-family: var(--font-title);
+  font-size: 2.5rem;
+  font-weight: 800;
+  margin-bottom: 8px;
+  text-transform: uppercase;
+  letter-spacing: -1px;
 }
 
-.edit-card h1{
-    text-align: center;
-
-    color: #d49b00;
-
-    font-size: 2.8rem;
-
-    margin-bottom: 10px;
+.edit-card p {
+  text-align: center;
+  color: var(--construction-steel);
+  font-family: var(--font-body);
+  font-size: 1rem;
+  margin-bottom: 35px;
 }
 
-.edit-card p{
-    text-align: center;
-
-    color: #444;
-
-    margin-bottom: 35px;
-}
-
-.form-grid{
-    display: grid;
-
-    grid-template-columns: repeat(2, 1fr);
-
-    gap: 20px;
-
-    margin-bottom: 20px;
+/* Alterado para campos um abaixo do outro (1 coluna) */
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr; /* Stacked verticalmente */
+  gap: 20px;
+  margin-bottom: 20px;
 }
 
 .form-grid div,
-.textarea-container{
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
+.textarea-container {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
 
 .form-grid label,
-.textarea-container label{
-    font-size: 0.85rem;
-    font-weight: bold;
-    color: #555;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
+.textarea-container label {
+  font-family: var(--font-title);
+  font-size: 0.8rem;
+  font-weight: 800;
+  color: var(--construction-steel);
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 
 .form-grid input,
 .form-grid select,
-textarea{
-    width: 100%;
-
-    padding: 14px;
-
-    border: 1px solid #ccc;
-
-    border-radius: 12px;
-
-    font-size: 1rem;
-
-    outline: none;
-
-    transition: 0.3s;
+textarea {
+  width: 100%;
+  padding: 15px 18px;
+  border: 1px solid rgba(18, 24, 36, 0.15);
+  border-radius: var(--border-radius-sm);
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  background-color: var(--construction-white);
+  color: var(--construction-dark);
+  outline: none;
+  transition: var(--transition-smooth);
 }
 
 .form-grid input:focus,
 .form-grid select:focus,
-textarea:focus{
-    border-color: #d49b00;
-
-    box-shadow: 0 0 8px rgba(212,155,0,0.4);
+textarea:focus {
+  border-color: var(--construction-orange);
+  box-shadow: 0 0 0 3px rgba(243, 156, 18, 0.15);
 }
 
-textarea{
-    min-height: 120px;
-
-    resize: none;
+textarea {
+  min-height: 120px;
+  resize: vertical;
 }
 
-.textarea-container{
-    margin-bottom: 25px;
+.textarea-container {
+  margin-bottom: 30px;
 }
 
-.button-group{
-    display: flex;
-    gap: 20px;
+/* Grupo de Botões */
+.button-group {
+  display: flex;
+  gap: 16px;
 }
 
 .submit-btn,
 .cancel-btn,
-.back-btn{
-    width: 100%;
-
-    padding: 16px;
-
-    border: none;
-
-    border-radius: 14px;
-
-    font-size: 1rem;
-
-    font-weight: bold;
-
-    cursor: pointer;
-
-    transition: 0.3s;
-
-    text-align: center;
-    text-decoration: none;
+.back-btn {
+  padding: 16px;
+  border: none;
+  border-radius: var(--border-radius-sm);
+  font-family: var(--font-title);
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: var(--transition-smooth);
+  text-align: center;
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
-.submit-btn{
-    background: #d49b00;
-    color: white;
-    flex: 2;
+.submit-btn {
+  background: var(--construction-orange);
+  color: var(--construction-white);
+  flex: 2;
+  box-shadow: 0 4px 12px rgba(243, 156, 18, 0.2);
 }
 
-.submit-btn:hover:not(:disabled){
-    background: #b88700;
-
-    transform: translateY(-2px);
+.submit-btn:hover:not(:disabled) {
+  background: var(--construction-orange-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(243, 156, 18, 0.35);
 }
 
-.submit-btn:disabled{
-    background: #ccc;
-    cursor: not-allowed;
-    transform: none;
+.submit-btn:disabled {
+  background: var(--construction-gray);
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
 }
 
-.cancel-btn{
-    background: #7f8c8d;
-    color: white;
-    flex: 1;
+.cancel-btn {
+  background: var(--construction-concrete);
+  color: var(--construction-steel);
+  border: 1px solid rgba(18, 24, 36, 0.1);
+  flex: 1;
 }
 
-.cancel-btn:hover:not(:disabled){
-    background: #95a5a6;
-
-    transform: translateY(-2px);
+.cancel-btn:hover:not(:disabled) {
+  background: var(--construction-steel);
+  color: var(--construction-white);
+  border-color: var(--construction-steel);
+  transform: translateY(-2px);
 }
 
-.cancel-btn:disabled{
-    background: #ddd;
-    cursor: not-allowed;
-    transform: none;
+.cancel-btn:disabled {
+  background: var(--construction-concrete);
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
 }
 
+/* Feedback do Formulário */
 .form-feedback {
-    background: #fdfefe;
-    border-radius: 14px;
-    padding: 30px;
-    text-align: center;
-    font-size: 1.1rem;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+  background: var(--construction-white);
+  border-radius: var(--border-radius-md);
+  padding: 40px;
+  text-align: center;
+  font-family: var(--font-title);
+  font-size: 1.15rem;
+  box-shadow: var(--shadow-md);
 }
 
 .loading-msg {
-    color: #d49b00;
-    font-weight: bold;
+  color: var(--construction-orange);
+  font-weight: 800;
 }
 
 .error-msg {
-    color: #c0392b;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 15px;
+  color: #c0392b;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
 }
 
 .back-btn {
-    max-width: 200px;
-    background: #c0392b;
-    color: white;
+  width: 100%;
+  max-width: 220px;
+  background: #c0392b;
+  color: var(--construction-white);
+  box-shadow: 0 4px 12px rgba(192, 57, 43, 0.2);
 }
 
 .back-btn:hover {
-    background: #a5281b;
-    transform: translateY(-2px);
+  background: #a5281b;
+  transform: translateY(-2px);
 }
 
-@keyframes fadeIn{
-
-    from{
-        opacity: 0;
-        transform: translateY(20px);
-    }
-
-    to{
-        opacity: 1;
-        transform: translateY(0);
-    }
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-@media(max-width: 768px){
+@media(max-width: 768px) {
+  .edit-card {
+    padding: 35px 20px;
+  }
 
-    .edit-card{
-        padding: 30px 20px;
-    }
+  .edit-card h1 {
+    font-size: 2rem;
+  }
 
-    .form-grid{
-        grid-template-columns: 1fr;
-    }
+  .form-grid {
+    gap: 15px;
+  }
 
-    .edit-card h1{
-        font-size: 2rem;
-    }
-
-    .button-group{
-        flex-direction: column;
-        gap: 10px;
-    }
+  .button-group {
+    flex-direction: column;
+    gap: 12px;
+  }
+  
+  .submit-btn,
+  .cancel-btn {
+    width: 100%;
+  }
 }

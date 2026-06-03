@@ -1,112 +1,126 @@
-header{
-    width: 100%;
-
-    padding: 18px 40px;
-
-    background: rgba(20,20,20,0.95);
-
-    backdrop-filter: blur(10px);
-
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-
-    gap: 20px;
-
-    position: sticky;
-    top: 0;
-
-    z-index: 999;
-
-    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+header {
+  width: 100%;
+  padding: 16px 48px;
+  background: rgba(18, 24, 36, 0.92); /* var(--construction-dark) com transparência */
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  position: sticky;
+  top: 0;
+  z-index: 999;
+  border-bottom: 2px solid var(--construction-steel);
+  box-shadow: var(--shadow-md);
+  transition: var(--transition-smooth);
 }
 
-/* Agrupa links */
-header a{
-    color: white;
-
-    text-decoration: none;
-
-    font-size: 1rem;
-
-    font-weight: bold;
-
-    transition: 0.3s;
-
-    position: relative;
+/* Logo ClienteObra */
+header > a:first-of-type {
+  font-family: var(--font-title);
+  color: var(--construction-white);
+  text-decoration: none;
+  font-size: 1.5rem;
+  font-weight: 900;
+  letter-spacing: -0.5px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-transform: uppercase;
 }
 
-/* Linha animada */
-header a::after{
-    content: "";
-
-    position: absolute;
-
-    left: 0;
-    bottom: -5px;
-
-    width: 0%;
-    height: 2px;
-
-    background: #d49b00;
-
-    transition: 0.3s;
+header > a:first-of-type::before {
+  content: "🚧";
+  font-size: 1.3rem;
 }
 
-header a:hover::after{
-    width: 100%;
+header > a:first-of-type:hover {
+  color: var(--construction-orange);
 }
 
-header a:hover{
-    color: #d49b00;
+header > a:first-of-type::after {
+  display: none !important; /* Remove linha animada para o logo */
 }
 
-/* Botão logout */
-header button{
-    padding: 10px 18px;
-
-    border: none;
-
-    border-radius: 10px;
-
-    background: #c0392b;
-
-    color: white;
-
-    font-weight: bold;
-
-    cursor: pointer;
-
-    transition: 0.3s;
+/* Links de Navegação */
+header a {
+  color: var(--construction-concrete);
+  text-decoration: none;
+  font-size: 0.95rem;
+  font-weight: 600;
+  transition: var(--transition-smooth);
+  position: relative;
+  padding: 6px 0;
 }
 
-header button:hover{
-    background: #a5281b;
-
-    transform: translateY(-2px);
+/* Linha animada sob os links */
+header a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0%;
+  height: 3px;
+  background: var(--construction-orange);
+  transition: var(--transition-smooth);
+  border-radius: 99px;
 }
 
-/* Layout interno */
-header > div{
-    display: flex;
-    align-items: center;
-    gap: 20px;
+header a:hover::after {
+  width: 100%;
+}
+
+header a:hover {
+  color: var(--construction-orange);
+}
+
+/* Botão de Logout */
+header button {
+  padding: 10px 20px;
+  border: 1px solid #c0392b;
+  border-radius: var(--border-radius-sm);
+  background: transparent;
+  color: #e74c3c;
+  font-weight: 700;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: var(--transition-smooth);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+header button:hover {
+  background: #c0392b;
+  color: var(--construction-white);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 10px rgba(192, 57, 43, 0.2);
+}
+
+/* Container de Links */
+header > div {
+  display: flex;
+  align-items: center;
+  gap: 28px;
 }
 
 /* Responsivo */
-@media(max-width: 768px){
+@media(max-width: 768px) {
+  header {
+    flex-direction: column;
+    padding: 18px 24px;
+    gap: 15px;
+  }
 
-    header{
-        flex-direction: column;
+  header > div {
+    width: 100%;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
 
-        padding: 20px;
-    }
-
-    header a{
-        font-size: 0.95rem;
-    }
-
-    header button{
-        width: 100%;
-    }
+  header button {
+    width: 100%;
+    margin-top: 5px;
+  }
 }

@@ -1,0 +1,71 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@400;500;600;700;800;900&display=swap');
+
+:root {
+  /* Cores Temáticas de Construção Civil */
+  --construction-orange: #f39c12;       /* Laranja de sinalização / EPIs */
+  --construction-orange-hover: #e67e22; /* Laranja escuro para hover */
+  --construction-dark: #121824;         /* Grafite escuro / Chapa de aço */
+  --construction-steel: #374151;        /* Cinza aço / Estruturas */
+  --construction-gray: #6b7280;         /* Cinza médio / Concreto seco */
+  --construction-concrete: #f3f4f6;     /* Cinza claro / Cimento fresco */
+  --construction-white: #ffffff;
+  --bg-dark-overlay: rgba(18, 24, 36, 0.78);
+  
+  /* Status da Obra */
+  --status-planning-bg: #4b5563;        /* Cinza escuro */
+  --status-progress-bg: #f59e0b;        /* Laranja médio */
+  --status-finished-bg: #10b981;        /* Verde segurança */
+  
+  /* Fontes */
+  --font-title: 'Montserrat', sans-serif;
+  --font-body: 'Inter', sans-serif;
+
+  /* Efeitos */
+  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.15);
+  --shadow-hover: 0 15px 35px rgba(243, 156, 18, 0.15); /* Sombra acentuada com tom de laranja */
+  --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --border-radius-sm: 8px;
+  --border-radius-md: 14px;
+  --border-radius-lg: 24px;
+}
+
+/* Reset Global */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--construction-concrete);
+  color: var(--construction-dark);
+  line-height: 1.5;
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-title);
+  font-weight: 700;
+}
+
+/* Scrollbar personalizada inspirada em trilhos industriais */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--construction-concrete);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--construction-steel);
+  border-radius: var(--border-radius-sm);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--construction-orange);
+}
