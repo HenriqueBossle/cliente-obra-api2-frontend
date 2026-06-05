@@ -49,13 +49,13 @@
   animation: scaleIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
-.cards-grid {
+.show-container .cards-grid {
     width: 100%;
     display: flex;
     justify-content: center;
 }
 
-.cards-grid > * {
+.show-container .cards-grid > * {
     width: 100%;
 }
 
