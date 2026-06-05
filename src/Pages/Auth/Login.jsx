@@ -3,6 +3,7 @@ import api from "../../Api/api";
 import { Link, useNavigate } from "react-router-dom";
 
 function Login() {
+    const [isLoading, setIsLoading] = useState(false);
     const navigate = useNavigate();
     const [formData, setFormData] = useState({
         email: '',
@@ -16,6 +17,8 @@ function Login() {
 
     const handleLogin = async (e) => {
         e.preventDefault(); 
+
+        setIsLoading(true)
 
         const payload = {
             ...formData,
@@ -47,6 +50,8 @@ function Login() {
             } else {
                 alert("Ocorreu um erro inesperado. Tente novamente mais tarde.");
             }
+        }finally{
+            setIsLoading(false)
         }
     };
 
@@ -82,8 +87,8 @@ function Login() {
                     </div>
 
                     {/* Removido o onClick daqui */}
-                    <button type="submit" className="Login-btn">
-                        Entrar na conta
+                    <button type="submit" className="Login-btn" disabled={isLoading}>
+                        {isLoading ? "Entrando..." : "Entrar na conta"}
                     </button>
                 </form>
 

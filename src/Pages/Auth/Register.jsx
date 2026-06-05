@@ -6,6 +6,7 @@ import "./Register.css";
 
 function Register(){
     const navigate = useNavigate()
+    const [isLoading, setIsLoading] = useState(false);
     const [formData, setFormData] = useState({
         name: '',
         email: '',
@@ -20,19 +21,40 @@ function Register(){
     const handleRegister = async (e) => {
         e.preventDefault(); 
 
+        setIsLoading(true)
+
+
+        const payload = {
+            ...formData,
+            device_name: navigator.userAgent.split(" ")[1] // Gera algo como "Browser Mozilla" ou você pode fixar uma string como "React Web"
+        };
+
         if(formData.password !== formData.password_confirmation){
             alert("As senhas são diferentes");
             return;
         }
+        try{
 
-        const response = await api.post('/register', formData);
-        alert("Conta criada com sucesso!!!")
+            const response = await api.post('/register', payload, {        
+                headers: {
+                    'Accept': 'application/json'
+                }
+            });
 
-        navigate("/")
+            if (response.data.token) {
+                localStorage.setItem('token', response.data.token);
+            }
+            alert("Conta criada com sucesso!!!")
 
-        if(error.response && error.response.status === 422){
-            alert("Erro: " + Object.values(error.response.data.errors).flat().join(", "));
+            navigate("/")
+        } catch (error){
+            if(error.response && error.response.status === 422){
+                alert("Erro: " + Object.values(error.response.data.errors).flat().join(", "));
+            }
+        } finally {
+            setIsLoading(false)
         }
+        
     
     }
 
@@ -95,8 +117,8 @@ function Register(){
                         />
                     </div>
 
-                    <button type="submit" onClick={handleRegister} className="register-btn">
-                        Criar conta
+                    <button type="submit" onClick={handleRegister} className="register-btn" disabled={isLoading}>
+                        {isLoading ? "Criando conta" : "Criar conta"}
                     </button>
 
                 </form>

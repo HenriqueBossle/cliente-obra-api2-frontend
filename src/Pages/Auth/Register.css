@@ -110,6 +110,18 @@
   box-shadow: 0 6px 18px rgba(243, 156, 18, 0.35);
 }
 
+.register-btn:disabled{
+    opacity: 0.6;
+    background-color: gray;
+    cursor: not-allowed;
+}
+
+.Login-btn:disabled {
+    opacity: 0.6;
+    background-color: gray;
+    cursor: not-allowed;
+}
+
 /* Links de Alternância */
 .register-link,
 .login-link {
