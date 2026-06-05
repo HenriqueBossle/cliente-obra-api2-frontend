@@ -121,6 +121,12 @@ textarea {
   box-shadow: 0 6px 18px rgba(243, 156, 18, 0.35);
 }
 
+.create-card button[type="submit"]:disabled{
+    opacity: 0.6;
+    background-color: gray;
+    cursor: not-allowed;
+}
+
 @keyframes fadeIn {
   from {
     opacity: 0;

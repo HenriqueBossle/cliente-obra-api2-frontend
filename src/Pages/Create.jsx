@@ -5,6 +5,7 @@ import api from "../Api/api";
 
 function Create(){
     const navigate = useNavigate();
+    const [isLoading, setIsLoading] = useState(false)
 
     const [data, setData] = useState({
         construction_name: "",
@@ -28,6 +29,8 @@ function Create(){
     async function handleSubmit(e) {
         e.preventDefault()
 
+        setIsLoading(true)
+
         const token = localStorage.getItem('token');
         try{
             const response = await api.post('/constructions', data, {
@@ -41,6 +44,8 @@ function Create(){
             navigate("/allconstructions")
         }catch(error){
             console.error("Erro ao criar obra:", error);
+        } finally {
+            setIsLoading(false)
         }
         
 
@@ -176,8 +181,8 @@ function Create(){
                         onChange={handleChange}
                     ></textarea>
 
-                    <button type="submit">
-                        Criar Obra
+                    <button type="submit" disabled={isLoading}>
+                        {isLoading ? "Criando..." : "Criar obra"}
                     </button>
 
                 </form>

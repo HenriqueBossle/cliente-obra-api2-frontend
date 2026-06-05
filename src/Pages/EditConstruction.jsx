@@ -23,6 +23,7 @@ function EditConstruction() {
     });
 
     const [loading, setLoading] = useState(true);
+
     const [saving, setSaving] = useState(false);
     const [error, setError] = useState(null);
 
