@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import api from "../Api/api";
 import "./Card.css";
 
 function Card({
@@ -24,8 +25,45 @@ function Card({
 
 
 {
- console.log(id)
- console.log(start_date)
+
+ const generatePdf = async () => {
+    try {
+        const response = await api.get(
+            `/constructions/${id}/pdf`,
+            {
+                responseType: "blob",
+            }
+        );
+
+        const file = new Blob(
+            [response.data],
+            {
+                type: "application/pdf",
+            }
+        );
+
+        const fileURL = window.URL.createObjectURL(file);
+
+        const link = document.createElement("a");
+
+        link.href = fileURL;
+        link.download = `construcao-${id}.pdf`;
+
+        document.body.appendChild(link);
+
+        link.click();
+
+        link.remove();
+
+        window.URL.revokeObjectURL(fileURL);
+
+    } catch (error) {
+
+        console.error("Erro ao gerar PDF:", error);
+
+        alert("Erro ao gerar PDF da obra.");
+    }
+};
     return(
         <div className="card-container">
 
@@ -94,6 +132,7 @@ function Card({
             <div className="card-buttons">
 
             {detalhes ? "" : 
+            
                 <Link className="show-btn" to={`/construction/${id}`}>
                     Ver mais
                 </Link>}
@@ -101,6 +140,12 @@ function Card({
                 
                 { detalhes ? 
                 <>
+                    <button
+                        className="pdf-btn"
+                        onClick={generatePdf}
+                    >
+                        Gerar PDF
+                    </button>
                     <Link className="edit-btn" to={`/construction/edit/${id}`}>
                         Editar
                     </Link>

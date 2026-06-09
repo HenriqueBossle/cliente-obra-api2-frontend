@@ -12,6 +12,7 @@ function AllConstructions() {
     const [loading, setLoading] = useState(true);
     const token = localStorage.getItem('token');
     const { authenticated, logout } = useContext(AuthContext);
+    const [generatingPdf, setGeneratingPdf] = useState(false);
 
     console.log(token)
 
@@ -46,6 +47,38 @@ function AllConstructions() {
 
     }, []);
 
+    const generateAllPdf = async () => {
+        try {
+            setGeneratingPdf(true);
+
+            const response = await api.get('/constructions/pdf', {
+                responseType: 'blob',
+            });
+
+            const file = new Blob([response.data], {
+                type: 'application/pdf',
+            });
+
+            const fileURL = window.URL.createObjectURL(file);
+
+            const link = document.createElement('a');
+            link.href = fileURL;
+            link.download = 'todas-construcoes.pdf';
+
+            document.body.appendChild(link);
+            link.click();
+
+            link.remove();
+            window.URL.revokeObjectURL(fileURL);
+
+        } catch (error) {
+            console.error('Erro ao gerar PDF:', error);
+            alert('Erro ao gerar PDF das construções.');
+        } finally {
+            setGeneratingPdf(false);
+        }
+    };
+
     return (
         <div className="all-container">
 
@@ -60,6 +93,15 @@ function AllConstructions() {
                     <p>
                         Gerencie todas as obras cadastradas
                     </p>
+
+
+                    <button
+                        onClick={generateAllPdf}
+                        disabled={generatingPdf}
+                        className="pdf-btn"
+                    >
+                        {generatingPdf ? 'Gerando PDF...' : 'Gerar PDF'}
+                    </button>
 
                 </div>
 
