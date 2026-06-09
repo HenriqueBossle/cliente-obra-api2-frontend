@@ -13,15 +13,19 @@ function Card({
     type,
     status,
     volume,
-    date,
+    start_date,
+    finish_date,
     notes,
 
     detalhes,
     onDelete
 })
 
+
+
 {
  console.log(id)
+ console.log(start_date)
     return(
         <div className="card-container">
 
@@ -71,7 +75,11 @@ function Card({
                 </p>
 
                 <p>
-                    <strong>Data:</strong> {date}
+                    <strong>Data de inicio:</strong> {start_date}
+                </p>
+
+                <p>
+                    <strong>Previsão de finalização:</strong> {finish_date}
                 </p>
 
                 <p className="notes">
@@ -80,6 +88,7 @@ function Card({
 
             </div>
 
+            
             
 
             <div className="card-buttons">

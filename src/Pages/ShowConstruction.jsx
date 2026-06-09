@@ -46,6 +46,8 @@ function ShowConstruction(){
                     }
                 });
 
+                console.log(response.data);
+
                 console.log("✅ [STEP 4] Resposta recebida:", response);
                 console.log("✅ [STEP 4] Data:", response.data);
                 console.log("✅ [STEP 4] Data.data:", response.data.data);
@@ -132,7 +134,8 @@ function ShowConstruction(){
                             type={construction.type}
                             status={construction.status}
                             volume={construction.volume}
-                            date={construction.date}
+                            start_date={construction.start_date}
+                            finish_date={construction.finish_date}
                             notes={construction.notes}
 
                             detalhes={true}

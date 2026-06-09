@@ -18,7 +18,8 @@ function Create(){
         type: "",
         status: "",
         volume: "",
-        date: "",
+        start_date: "",
+        finish_date: "",
         notes: ""
     })
 
@@ -60,7 +61,8 @@ function Create(){
             type: "",
             status: "",
             volume: "",
-            date: "",
+            start_date: "",
+            finish_date: "",
             notes: ""
         })
     }
@@ -167,10 +169,17 @@ function Create(){
 
                         <input
                             type="date"
-                            name="date"
-                            value={data.date}
+                            name="start_date"
+                            value={data.start_date}
                             onChange={handleChange}
                         />
+                        <input
+                            type="date"
+                            name="finish_date"
+                            value={data.finish_date}
+                            onChange={handleChange}
+                        />
+                        {console.log(data.start_date)}
 
                     </div>
 

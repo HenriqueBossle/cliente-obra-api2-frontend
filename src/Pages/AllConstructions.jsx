@@ -92,7 +92,8 @@ function AllConstructions() {
                             type={c.type}
                             status={c.status}
                             volume={c.volume}
-                            date={c.date}
+                            start_date={c.start_date}
+                            finish_date={c.finish_date}
                             notes={c.notes}
 
                             detalhes={false}

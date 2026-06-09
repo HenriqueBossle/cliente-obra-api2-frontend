@@ -18,7 +18,8 @@ function EditConstruction() {
         type: "",
         status: "",
         volume: "",
-        date: "",
+        start_date: "",
+        finish_date: "",
         notes: ""
     });
 
@@ -52,7 +53,8 @@ function EditConstruction() {
                     type: construction.type || "",
                     status: construction.status || "",
                     volume: construction.volume || "",
-                    date: construction.date ? construction.date.substring(0, 10) : "",
+                    start_date: construction.start_date ? construction.start_date.substring(0, 10) : "",
+                    finish_date: construction.finish_date ? construction.finish_date.substring(0, 10) : "",
                     notes: construction.notes || ""
                 });
                 setError(null);
@@ -247,12 +249,22 @@ function EditConstruction() {
                             </div>
 
                             <div>
-                                <label htmlFor="date">Data</label>
+                                <label htmlFor="start_date">Data de Inicio</label>
                                 <input
-                                    id="date"
+                                    id="start_date"
                                     type="date"
-                                    name="date"
-                                    value={data.date}
+                                    name="start_date"
+                                    value={data.start_date}
+                                    onChange={handleChange}
+                                />
+                            </div>
+                             <div>
+                                <label htmlFor="finish_date">Data de Previsão de entrega</label>
+                                <input
+                                    id="finish_date"
+                                    type="date"
+                                    name="finish_date"
+                                    value={data.finish_date_date}
                                     onChange={handleChange}
                                 />
                             </div>
