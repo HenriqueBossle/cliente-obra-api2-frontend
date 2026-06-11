@@ -86,86 +86,96 @@ function Create(){
                 <form onSubmit={handleSubmit}>
 
                     <div className="form-grid">
+                        <label htmlFor="construction_name">Nome da Obra</label>
 
                         <input
                             type="text"
                             name="construction_name"
-                            placeholder="Nome da Obra"
+                            placeholder="Ex: Prédio da Empresa X"
                             value={data.construction_name}
                             onChange={handleChange}
                         />
 
+                        <label htmlFor="builder_name">Nome do Construtor</label>
                         <input
                             type="text"
                             name="builder_name"
-                            placeholder="Nome do Cliente"
+                            placeholder="Nome da empresa ou do proprietário"
                             value={data.builder_name}
                             onChange={handleChange}
                         />
+                        <label htmlFor="builder_phone">Telefone do Construtor</label>
 
                         <input
                             type="text"
                             name="builder_phone"
-                            placeholder="Telefone do Cliente"
+                            placeholder="Ex: 51 90000-0000"
                             value={data.builder_phone}
                             onChange={handleChange}
                         />
+                        <label htmlFor="cpf_cnpj">CPF ou CNPJ</label>
 
                         <input
                             type="text"
                             name="cpf_cnpj"
-                            placeholder="CPF ou CNPJ"
+                            placeholder="Ex: 000.000.000-00 ou 00.000.000/0000-00"
                             value={data.cpf_cnpj}
                             onChange={handleChange}
                         />
 
+                        <label htmlFor="sitemanager_name">Nome do Responsável</label>
                         <input
                             type="text"
                             name="sitemanager_name"
-                            placeholder="Nome do Responsável"
+                            placeholder="Nome do mestre de obra ou outro responsável"
                             value={data.sitemanager_name}
                             onChange={handleChange}
                         />
-
+                        <label htmlFor="sitemanager_phone">Telefone do Responsável</label>
                         <input
                             type="text"
                             name="sitemanager_phone"
-                            placeholder="Telefone do Responsável"
+                            placeholder="Ex: 51 90000-0000"
                             value={data.sitemanager_phone}
                             onChange={handleChange}
                         />
 
+                        <label htmlFor="address">Endereço da Obra</label>
                         <input
                             type="text"
                             name="address"
-                            placeholder="Endereço da Obra"
+                            placeholder="Ex: Rua X, Bairro Y, Cidade Z"
                             value={data.address}
                             onChange={handleChange}
                         />
 
+                        <label htmlFor="type">Tipo da obra</label>
                         <input
                             type="text"
                             name="type"
-                            placeholder="Tipo da obra"
+                            placeholder="Ex: Casa, Prédio, Pavilhão etc."
                             value={data.type}
                             onChange={handleChange}
                         />
                         
+                        <label htmlFor="status">Status da obra</label>
                         <input
                             type="text"
                             name="status"
-                            placeholder="Status da obra"
+                            placeholder="Concluído, em execução, cancelado etc."
                             value={data.status}
                             onChange={handleChange}
                         />
                       
+                        <label htmlFor="volume">Volume em m3</label>
                         <input
                             type="number"
                             name="volume"
-                            placeholder="Volume"
+                            placeholder="Ex: 300.00"
                             value={data.volume}
                             onChange={handleChange}
                         />
+                        <label htmlFor="start_date">Data de Início</label>
 
                         <input
                             type="date"
@@ -173,22 +183,27 @@ function Create(){
                             value={data.start_date}
                             onChange={handleChange}
                         />
+
+                        <label htmlFor="finish_date">Data de previsão de término</label>
+
                         <input
                             type="date"
                             name="finish_date"
                             value={data.finish_date}
                             onChange={handleChange}
                         />
-                        {console.log(data.start_date)}
 
                     </div>
 
+                    <div className="textarea-container">
+                    <label htmlFor="notes">Observações</label>
                     <textarea
                         name="notes"
-                        placeholder="Observações"
+                        placeholder="Espaço para anotações sobre a obra."
                         value={data.notes}
                         onChange={handleChange}
                     ></textarea>
+                    </div>
 
                     <button type="submit" disabled={isLoading}>
                         {isLoading ? "Criando..." : "Criar obra"}

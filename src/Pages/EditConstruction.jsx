@@ -249,7 +249,7 @@ function EditConstruction() {
                             </div>
 
                             <div>
-                                <label htmlFor="start_date">Data de Inicio</label>
+                                <label htmlFor="start_date">Data de Início</label>
                                 <input
                                     id="start_date"
                                     type="date"
@@ -259,7 +259,7 @@ function EditConstruction() {
                                 />
                             </div>
                              <div>
-                                <label htmlFor="finish_date">Data de Previsão de entrega</label>
+                                <label htmlFor="finish_date">Data de previsão de término</label>
                                 <input
                                     id="finish_date"
                                     type="date"

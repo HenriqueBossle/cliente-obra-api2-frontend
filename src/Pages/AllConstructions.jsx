@@ -94,20 +94,22 @@ function AllConstructions() {
                         Gerencie todas as obras cadastradas
                     </p>
 
-
-                {!loading && constructions.length > 0 && (
-                    <button
-                        onClick={generateAllPdf}
-                        disabled={generatingPdf}
-                        className="pdf-btn"
-                    >
-                        {generatingPdf
-                            ? 'Gerando PDF de todos os registros...'
-                            : 'Gerar PDF de todos os registros'}
-                    </button>
-                )}
-
                 </div>
+
+                     
+                {!loading && constructions.length > 0 && (
+                    <div className="pdf-container">
+                        <button
+                            onClick={generateAllPdf}
+                            disabled={generatingPdf}
+                            className="pdf-btn"
+                        >
+                            {generatingPdf
+                                ? 'Gerando PDF de todos os registros...'
+                                : 'Gerar PDF de todos os registros'}
+                        </button>
+                    </div>
+                )}
 
                 {loading && (
                     <div className="loading">

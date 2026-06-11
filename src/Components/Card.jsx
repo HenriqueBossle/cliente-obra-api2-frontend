@@ -29,6 +29,7 @@ function Card({
 
  const generatePdf = async () => {
     try {
+        setGeneratingPdf(true)
         const response = await api.get(
             `/constructions/${id}/pdf`,
             {
@@ -63,6 +64,8 @@ function Card({
         console.error("Erro ao gerar PDF:", error);
 
         alert("Erro ao gerar PDF da obra.");
+    } finally {
+        setGeneratingPdf(false)
     }
 };
     return(
@@ -148,7 +151,7 @@ function Card({
                         className="pdf-btn"
                     >
                         {generatingPdf
-                            ? 'Gerando PDF'
+                            ? 'Gerando PDF...'
                             : 'Gerar PDF'}
                     </button>
                     <Link className="edit-btn" to={`/construction/edit/${id}`}>
