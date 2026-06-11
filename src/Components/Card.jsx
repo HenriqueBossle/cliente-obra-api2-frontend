@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import api from "../Api/api";
 import "./Card.css";
+import { useState } from "react";
 
 function Card({
     id,
@@ -23,8 +24,8 @@ function Card({
 })
 
 
-
 {
+ const [generatingPdf, setGeneratingPdf] = useState(false);
 
  const generatePdf = async () => {
     try {
@@ -140,11 +141,15 @@ function Card({
                 
                 { detalhes ? 
                 <>
+
                     <button
-                        className="pdf-btn"
                         onClick={generatePdf}
+                        disabled={generatingPdf}
+                        className="pdf-btn"
                     >
-                        Gerar PDF
+                        {generatingPdf
+                            ? 'Gerando PDF'
+                            : 'Gerar PDF'}
                     </button>
                     <Link className="edit-btn" to={`/construction/edit/${id}`}>
                         Editar

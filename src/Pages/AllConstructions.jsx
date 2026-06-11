@@ -95,13 +95,17 @@ function AllConstructions() {
                     </p>
 
 
+                {!loading && constructions.length > 0 && (
                     <button
                         onClick={generateAllPdf}
                         disabled={generatingPdf}
                         className="pdf-btn"
                     >
-                        {generatingPdf ? 'Gerando PDF...' : 'Gerar PDF'}
+                        {generatingPdf
+                            ? 'Gerando PDF de todos os registros...'
+                            : 'Gerar PDF de todos os registros'}
                     </button>
+                )}
 
                 </div>
 
