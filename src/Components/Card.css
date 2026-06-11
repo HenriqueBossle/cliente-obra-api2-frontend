@@ -172,6 +172,10 @@
     opacity: 0.9;
 }
 
+.pdf-btn:disabled{
+    background-color: gray;
+}
+
 /* Botão Ver mais */
 .show-btn {
   background: var(--construction-steel);
