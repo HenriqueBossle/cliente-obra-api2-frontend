@@ -47,6 +47,10 @@ function Navbar() {
                             Criar
                         </Link>
 
+                        <Link to="/profile">
+                            Perfil
+                        </Link>
+
                         <button onClick={handleLogout}>
                             Sair
                         </button>

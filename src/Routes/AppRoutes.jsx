@@ -9,6 +9,7 @@ import Create from "../Pages/Create"
 import ProtectedRoute from "./ProtectedRoutes"
 import ShowConstruction from "../Pages/ShowConstruction"
 import EditConstruction from "../Pages/EditConstruction"
+import Profile from "../Pages/Profile"
 import { AuthProvider } from "../context/AuthContext"
 
 function AppRoutes() {
@@ -24,6 +25,11 @@ function AppRoutes() {
                 <Route path="/register" element={<Register />} />
 
                 {/* Rotas protegidas */}
+                <Route path="/profile" element={
+                    <ProtectedRoute>
+                        <Profile />
+                    </ProtectedRoute>
+                } />
                 <Route path="/allconstructions" element={
                     <ProtectedRoute>
                         <AllConstructions />
