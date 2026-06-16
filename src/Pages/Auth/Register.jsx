@@ -21,7 +21,7 @@ function Register(){
     const handleRegister = async (e) => {
         e.preventDefault(); 
 
-        setIsLoading(true)
+        
 
 
         const payload = {
@@ -33,6 +33,9 @@ function Register(){
             alert("As senhas são diferentes");
             return;
         }
+
+        setIsLoading(true)
+
         try{
 
             const response = await api.post('/register', payload, {        
@@ -72,7 +75,7 @@ function Register(){
                 </p>
 
                 <form onSubmit={handleRegister}>
-
+                <fieldset disabled={isLoading}>
                     <div className="input-group">
                         <input
                             type="text"
@@ -116,6 +119,7 @@ function Register(){
                             required
                         />
                     </div>
+                    </fieldset>
 
                     <button type="submit" onClick={handleRegister} className="register-btn" disabled={isLoading}>
                         {isLoading ? "Criando conta" : "Criar conta"}

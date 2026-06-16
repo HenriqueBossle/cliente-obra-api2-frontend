@@ -113,7 +113,7 @@ function Card({
                 </p>
 
                 <p>
-                    <strong>Volume:</strong> {volume}
+                    <strong>Volume em m³:</strong> {Number(volume).toFixed(1)}
                 </p>
 
                 <p>

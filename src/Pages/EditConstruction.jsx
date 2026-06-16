@@ -6,7 +6,7 @@ import api from "../Api/api";
 function EditConstruction() {
     const { id } = useParams();
     const navigate = useNavigate();
-
+   
     const [data, setData] = useState({
         construction_name: "",
         builder_name: "",
@@ -23,13 +23,14 @@ function EditConstruction() {
         notes: ""
     });
 
-    const [loading, setLoading] = useState(true);
-
+    const [isLoading, setIsLoading] = useState(true);
     const [saving, setSaving] = useState(false);
+
     const [error, setError] = useState(null);
 
     useEffect(() => {
         const fetchConstruction = async () => {
+            setIsLoading(true);
             try {
                 const token = localStorage.getItem('token');
                 const response = await api.get(`/constructions/${id}`, {
@@ -62,7 +63,7 @@ function EditConstruction() {
                 console.error("Erro ao buscar obra para edição:", err);
                 setError(err.response?.data?.message || "Erro ao carregar dados da obra.");
             } finally {
-                setLoading(false);
+                setIsLoading(false);
             }
         };
 
@@ -70,7 +71,7 @@ function EditConstruction() {
             fetchConstruction();
         } else {
             setError("ID da obra inválido.");
-            setLoading(false);
+            setIsLoading(false);
         }
     }, [id]);
 
@@ -80,10 +81,15 @@ function EditConstruction() {
 
     async function handleSubmit(e) {
         e.preventDefault();
-        setSaving(true);
+        
+        if (saving) return;
 
-        const token = localStorage.getItem('token');
+        setSaving(true);
+        
+
         try {
+        const token = localStorage.getItem('token');
+        
             await api.put(`/constructions/${id}`, data, {
                 headers: {
                     'Authorization': `Bearer ${token}`, 
@@ -109,7 +115,7 @@ function EditConstruction() {
                 <h1>Editar Obra</h1>
                 <p>Altere os dados da construção nos campos abaixo</p>
 
-                {loading && (
+                {isLoading && (
                     <div className="form-feedback loading-msg">
                         Carregando dados da obra...
                     </div>
@@ -124,8 +130,9 @@ function EditConstruction() {
                     </div>
                 )}
 
-                {!loading && !error && (
+                {!isLoading && !error && (
                     <form onSubmit={handleSubmit}>
+                        <fieldset disabled={saving} >
                         <div className="form-grid">
                             <div>
                                 <label htmlFor="construction_name">Nome da Obra</label>
@@ -264,7 +271,7 @@ function EditConstruction() {
                                     id="finish_date"
                                     type="date"
                                     name="finish_date"
-                                    value={data.finish_date_date}
+                                    value={data.finish_date}
                                     onChange={handleChange}
                                 />
                             </div>
@@ -289,7 +296,9 @@ function EditConstruction() {
                                 Cancelar
                             </button>
                         </div>
+                        </fieldset>
                     </form>
+                    
                 )}
             </div>
         </div>

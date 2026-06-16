@@ -54,6 +54,12 @@
   margin-bottom: 30px;
 }
 
+.input:disabled{
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+
 .input-group {
   margin-bottom: 18px;
 }

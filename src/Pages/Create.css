@@ -127,6 +127,12 @@ textarea {
     cursor: not-allowed;
 }
 
+.input:disabled{
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+
 @keyframes fadeIn {
   from {
     opacity: 0;

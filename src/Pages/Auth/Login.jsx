@@ -64,6 +64,7 @@ function Login() {
 
                 {/* Evento apenas aqui no onSubmit */}
                 <form onSubmit={handleLogin}>
+                    <fieldset disabled={isLoading}>
                     <div className="input-group">
                         <input
                             type="email"
@@ -71,20 +72,23 @@ function Login() {
                             placeholder="E-mail"
                             value={formData.email}
                             onChange={handleChange}
+                            disabled={isLoading}
                             required
                         />
                     </div>
 
-                    <div className="input-group">
+                    <div className="input-group" >
                         <input
                             type="password"
                             name="password"
                             placeholder="Senha"
                             value={formData.password}
                             onChange={handleChange}
+                            disabled={isLoading}
                             required
                         />
                     </div>
+                    </fieldset>
 
                     {/* Removido o onClick daqui */}
                     <button type="submit" className="Login-btn" disabled={isLoading}>

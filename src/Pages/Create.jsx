@@ -84,8 +84,9 @@ function Create(){
                 </p>
 
                 <form onSubmit={handleSubmit}>
-
+                    <fieldset disabled={isLoading}>
                     <div className="form-grid">
+                    
                         <label htmlFor="construction_name">Nome da Obra</label>
 
                         <input
@@ -167,11 +168,11 @@ function Create(){
                             onChange={handleChange}
                         />
                       
-                        <label htmlFor="volume">Volume em m3</label>
+                        <label htmlFor="volume">Volume em m³</label>
                         <input
                             type="number"
                             name="volume"
-                            placeholder="Ex: 300.00"
+                            placeholder="Ex: 1.5"
                             value={data.volume}
                             onChange={handleChange}
                         />
@@ -204,7 +205,7 @@ function Create(){
                         onChange={handleChange}
                     ></textarea>
                     </div>
-
+                    </fieldset>
                     <button type="submit" disabled={isLoading}>
                         {isLoading ? "Criando..." : "Criar obra"}
                     </button>

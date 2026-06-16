@@ -192,6 +192,11 @@
   background: var(--construction-orange);
   color: var(--construction-white);
 }
+fieldset {
+  border: none;
+  margin: 0;
+  padding: 0;
+}
 
 .edit-btn:hover {
   background: var(--construction-orange-hover);

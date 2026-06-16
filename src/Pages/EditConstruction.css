@@ -211,6 +211,11 @@ textarea {
   transform: translateY(-2px);
 }
 
+fieldset:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
 @keyframes fadeIn {
   from {
     opacity: 0;
