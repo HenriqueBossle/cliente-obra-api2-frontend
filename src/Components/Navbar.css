@@ -106,21 +106,24 @@ header > div {
 
 /* Responsivo */
 @media(max-width: 768px) {
-  header {
-    flex-direction: column;
-    padding: 18px 24px;
-    gap: 15px;
-  }
+@media(max-width: 768px) {
+    header {
+      flex-direction: column;
+      padding: 18px 24px;
+      gap: 15px;
+    }
 
-  header > div {
-    width: 100%;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 20px;
-  }
+    header > div {
+      width: 100%;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
 
-  header button {
-    width: 100%;
-    margin-top: 5px;
+    header button {
+      width: auto;
+      padding: 6px 12px;
+      font-size: 0.75rem;
+    }
   }
 }
