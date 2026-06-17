@@ -30,14 +30,7 @@ header > a:first-of-type {
   text-transform: uppercase;
 }
 
-header > a:first-of-type::before {
-  content: "🚧";
-  font-size: 1.3rem;
-}
 
-header > a:first-of-type:hover {
-  color: var(--construction-orange);
-}
 
 header > a:first-of-type::after {
   display: none !important; /* Remove linha animada para o logo */
