@@ -14,8 +14,6 @@ function AllConstructions() {
     const { authenticated, logout } = useContext(AuthContext);
     const [generatingPdf, setGeneratingPdf] = useState(false);
 
-    console.log(token)
-
     useEffect(() => {
 
         const fetchConstructions = async () => {

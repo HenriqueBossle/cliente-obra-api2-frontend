@@ -2,6 +2,8 @@ import { Link } from "react-router-dom";
 import api from "../Api/api";
 import "./Card.css";
 import { useState } from "react";
+import { format, parseISO } from 'date-fns';
+import { ptBR } from 'date-fns/locale';
 
 function Card({
     id,
@@ -24,7 +26,19 @@ function Card({
 })
 
 
+
 {
+
+
+const format_start = start_date
+    ? format(parseISO(start_date), "dd/MM/yyyy", { locale: ptBR })
+    : "Não informado";
+
+const format_finish = finish_date
+    ? format(parseISO(finish_date), "dd/MM/yyyy", { locale: ptBR })
+    : "Não informado";
+
+
  const [generatingPdf, setGeneratingPdf] = useState(false);
 
  const generatePdf = async () => {
@@ -117,11 +131,11 @@ function Card({
                 </p>
 
                 <p>
-                    <strong>Data de inicio:</strong> {start_date}
+                    <strong>Data de inicio:</strong> {format_start}
                 </p>
 
                 <p>
-                    <strong>Previsão de finalização:</strong> {finish_date}
+                    <strong>Previsão de finalização:</strong> {format_finish}
                 </p>
 
                 <p className="notes">
