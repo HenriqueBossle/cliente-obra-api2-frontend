@@ -1,3 +1,28 @@
+🏗️ Cliente Obra - Front-end
+
+Este é o repositório do frontend do Cliente Obra uma aplicação web desenvolvida em React para gerenciamento de clientes e obras de construção civil.
+
+🚀 Tecnologias
+React
+React Router DOM
+Axios
+Date-fns
+Vite
+CSS3
+
+✨ Funcionalidades
+Cadastro de usuários
+Login e Logout
+Rotas protegidas
+Cadastro de obras
+Listagem de obras
+Visualização de detalhes
+Edição de obras
+Exclusão de obras
+Gerenciamento de perfil
+Interface responsiva
+Geração de PDF de uma ou de todas as obras cadastradas.
+
 # React + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
