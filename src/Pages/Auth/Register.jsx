@@ -4,9 +4,12 @@ import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import "./Register.css";
 
-function Register(){
+function Register() {
     const navigate = useNavigate()
     const [isLoading, setIsLoading] = useState(false);
+    const [showSenha, setShowSenha] = useState(false)
+    const [showConfirmar, setShowConfirmar] = useState(false)
+
     const [formData, setFormData] = useState({
         name: '',
         email: '',
@@ -19,9 +22,9 @@ function Register(){
     };
 
     const handleRegister = async (e) => {
-        e.preventDefault(); 
+        e.preventDefault();
 
-        
+
 
 
         const payload = {
@@ -29,16 +32,16 @@ function Register(){
             device_name: navigator.userAgent.split(" ")[1] // Gera algo como "Browser Mozilla" ou você pode fixar uma string como "React Web"
         };
 
-        if(formData.password !== formData.password_confirmation){
+        if (formData.password !== formData.password_confirmation) {
             alert("As senhas são diferentes");
             return;
         }
 
         setIsLoading(true)
 
-        try{
+        try {
 
-            const response = await api.post('/register', payload, {        
+            const response = await api.post('/register', payload, {
                 headers: {
                     'Accept': 'application/json'
                 }
@@ -50,18 +53,16 @@ function Register(){
             alert("Conta criada com sucesso!!!")
 
             navigate("/")
-        } catch (error){
-            if(error.response && error.response.status === 422){
+        } catch (error) {
+            if (error.response && error.response.status === 422) {
                 alert("Erro: " + Object.values(error.response.data.errors).flat().join(", "));
             }
         } finally {
             setIsLoading(false)
         }
-        
-    
     }
 
-       return(
+    return (
         <div className="register-container">
 
             <div className="overlay"></div>
@@ -71,54 +72,69 @@ function Register(){
                 <h1>ClienteObra</h1>
 
                 <p>
-                    Crie sua conta para gerenciar construções
+                    Crie sua conta para gerenciar obras
                 </p>
 
                 <form onSubmit={handleRegister}>
-                <fieldset disabled={isLoading}>
-                    <div className="input-group">
-                        <input
-                            type="text"
-                            name="name"
-                            placeholder="Nome completo"
-                            value={formData.name}
-                            onChange={handleChange}
-                            required
-                        />
-                    </div>
+                    <fieldset disabled={isLoading}>
+                        <div className="input-group">
+                            <input
+                                type="text"
+                                name="name"
+                                placeholder="Nome completo"
+                                value={formData.name}
+                                onChange={handleChange}
+                                required
+                            />
+                        </div>
 
-                    <div className="input-group">
-                        <input
-                            type="email"
-                            name="email"
-                            placeholder="E-mail"
-                            value={formData.email}
-                            onChange={handleChange}
-                            required
-                        />
-                    </div>
+                        <div className="input-group">
+                            <input
+                                type="email"
+                                name="email"
+                                placeholder="E-mail"
+                                value={formData.email}
+                                onChange={handleChange}
+                                required
+                            />
+                        </div>
 
-                    <div className="input-group">
-                        <input
-                            type="password"
-                            name="password"
-                            placeholder="Senha"
-                            value={formData.password}
-                            onChange={handleChange}
-                            required
-                        />
-                    </div>
+                        
+                        <div className="input-group">
+                            <input
+                                type={showSenha ? "text" : "password"}
+                                name="password"
+                                placeholder="Senha"
+                                value={formData.password}
+                                onChange={handleChange}
+                                required
+                            />
+                            <button
+                                type="button"
+                                className="toggle-password"
+                                onClick={() => setShowSenha(!showSenha)}
+                            >
+                                {showSenha ? "Ocultar" : "Mostrar"}
+                            </button>
+                        </div>
 
-                    <div className="input-group">
-                        <input
-                            type="password"
-                            name="password_confirmation"
-                            placeholder="Confirmar senha"
-                            value={formData.password_confirmation}
-                            onChange={handleChange}
-                            required
-                        />
-                    </div>
+                        <div className="input-group">
+                            <input
+                                type={showConfirmar ? "text" : "password"}
+                                name="password_confirmation"
+                                placeholder="Confirmar senha"
+                                value={formData.password_confirmation}
+                                onChange={handleChange}
+                                required
+                            />
+                            <button
+                                type="button"
+                                className="toggle-password"
+                                onClick={() => setShowConfirmar(!showConfirmar)}
+                            >
+                                {showConfirmar ? "Ocultar" : "Mostrar"}
+                            </button>
+                        </div>
                     </fieldset>
 
                     <button type="submit" onClick={handleRegister} className="register-btn" disabled={isLoading}>
