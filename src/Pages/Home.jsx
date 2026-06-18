@@ -18,7 +18,7 @@ function Home() {
                 <h1>ClienteObra</h1>
 
                 <p>
-                    Gerencie suas obras, clientes e construções
+                    Gerencie seus clientes e obras
                     de forma simples e organizada.
                 </p>
 

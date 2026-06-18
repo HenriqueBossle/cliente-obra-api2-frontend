@@ -40,7 +40,7 @@ function Navbar() {
                             Home
                         </Link>
                         <Link to="/allconstructions">
-                            Construções
+                            Obras
                         </Link>
 
                         <Link to="/create">

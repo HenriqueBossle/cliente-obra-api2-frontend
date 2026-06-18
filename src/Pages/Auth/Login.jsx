@@ -1,10 +1,11 @@
-import { useState } from "react"; // Removido o 'use' não utilizado
+import { useState } from "react";
 import api from "../../Api/api";
 import { Link, useNavigate } from "react-router-dom";
 
 function Login() {
     const [isLoading, setIsLoading] = useState(false);
     const navigate = useNavigate();
+    const [showSenha, setShowSenha] = useState(false)
     const [formData, setFormData] = useState({
         email: '',
         password: '',
@@ -16,7 +17,7 @@ function Login() {
     };
 
     const handleLogin = async (e) => {
-        e.preventDefault(); 
+        e.preventDefault();
 
         setIsLoading(true)
 
@@ -50,7 +51,7 @@ function Login() {
             } else {
                 alert("Ocorreu um erro inesperado. Tente novamente mais tarde.");
             }
-        }finally{
+        } finally {
             setIsLoading(false)
         }
     };
@@ -60,34 +61,42 @@ function Login() {
             <div className="overlay"></div>
             <div className="register-card">
                 <h1>ClienteObra</h1>
-                <p>Entre na sua conta para gerenciar construções</p>
+                <p>Entre na sua conta para gerenciar suas obras</p>
 
                 {/* Evento apenas aqui no onSubmit */}
                 <form onSubmit={handleLogin}>
                     <fieldset disabled={isLoading}>
-                    <div className="input-group">
-                        <input
-                            type="email"
-                            name="email"
-                            placeholder="E-mail"
-                            value={formData.email}
-                            onChange={handleChange}
-                            disabled={isLoading}
-                            required
-                        />
-                    </div>
+                        <div className="input-group">
+                            <input
+                                type="email"
+                                name="email"
+                                placeholder="E-mail"
+                                value={formData.email}
+                                onChange={handleChange}
+                                disabled={isLoading}
+                                required
+                            />
+                        </div>
 
-                    <div className="input-group" >
-                        <input
-                            type="password"
-                            name="password"
-                            placeholder="Senha"
-                            value={formData.password}
-                            onChange={handleChange}
-                            disabled={isLoading}
-                            required
-                        />
-                    </div>
+                        <div className="input-group">
+                            <input
+                                type={showSenha ? "text" : "password"}
+                                name="password"
+                                placeholder="Senha"
+                                value={formData.password}
+                                onChange={handleChange}
+                                disabled={isLoading}
+                                required
+                            />
+
+                            <button
+                                type="button"
+                                className="toggle-password"
+                                onClick={() => setShowSenha(!showSenha)}
+                            >
+                                {showSenha ? "Ocultar" : "Mostrar"}
+                            </button>
+                        </div>
                     </fieldset>
 
                     {/* Removido o onClick daqui */}
