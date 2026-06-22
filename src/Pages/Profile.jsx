@@ -14,6 +14,12 @@ function Profile() {
     const [updatingPassword, setUpdatingPassword] = useState(false);
     const [deletingAccount, setDeletingAccount] = useState(false);
 
+    const [showCurrentPassword, setShowCurrentPassword] = useState(false)
+    const [showNewPassword, setShowNewPassword] = useState(false)
+    const [showConfirmPassword, setShowConfirmPassword] = useState(false)
+    const [showConfirmPasswordDeleteAccount, setShowConfirmPasswordDeleteAccount] = useState(false)
+
+
     // User details state
     const [user, setUser] = useState({ id: null, name: "", email: "" });
 
@@ -25,7 +31,7 @@ function Profile() {
         password_confirmation: ""
     });
     const [deleteConfirmPassword, setDeleteConfirmPassword] = useState("");
-    
+
     // Modal state
     const [showDeleteModal, setShowDeleteModal] = useState(false);
 
@@ -227,7 +233,7 @@ function Profile() {
 
         try {
             setDeletingAccount(true);
-            
+
             // Laravel DELETE method allows payload with data, or we can send it in headers/data block in axios config
             await api.delete("/profile", {
                 data: {
@@ -291,12 +297,12 @@ function Profile() {
                     </div>
                 ) : (
                     <div className="profile-grid">
-                        
+
                         {/* Section 1: Profile Info Card */}
                         <div className="profile-card">
                             <div>
                                 <h2>Informações do Perfil</h2>
-                                
+
                                 <div className="avatar-container">
                                     <div className="profile-avatar">
                                         {getInitials(user.name)}
@@ -342,9 +348,9 @@ function Profile() {
                                         />
                                     </div>
 
-                                    <button 
-                                        type="submit" 
-                                        className="profile-btn" 
+                                    <button
+                                        type="submit"
+                                        className="profile-btn"
                                         disabled={updatingProfile}
                                     >
                                         {updatingProfile ? "Salvando..." : "Salvar Alterações"}
@@ -367,8 +373,9 @@ function Profile() {
                                 <form onSubmit={handlePasswordSubmit} className="profile-form">
                                     <div className="profile-input-group">
                                         <label htmlFor="current_password">Senha Atual</label>
+                                        <div className="password-wrapper">
                                         <input
-                                            type="password"
+                                            type={showCurrentPassword ? "text" : "password"}
                                             id="current_password"
                                             name="current_password"
                                             value={passwordForm.current_password}
@@ -377,12 +384,21 @@ function Profile() {
                                             disabled={updatingPassword}
                                             required
                                         />
+                                        <button
+                                            type="button"
+                                            className="toggle-password"
+                                            onClick={() => setShowCurrentPassword(!showCurrentPassword)}
+                                        >
+                                            {showCurrentPassword ? "Ocultar" : "Mostrar"}
+                                        </button>
+                                        </div>
                                     </div>
 
                                     <div className="profile-input-group">
                                         <label htmlFor="password">Nova Senha</label>
+                                        <div className="password-wrapper">
                                         <input
-                                            type="password"
+                                            type={showNewPassword ? "text" : "password"}
                                             id="password"
                                             name="password"
                                             value={passwordForm.password}
@@ -391,12 +407,21 @@ function Profile() {
                                             disabled={updatingPassword}
                                             required
                                         />
+                                        <button
+                                            type="button"
+                                            className="toggle-password"
+                                            onClick={() => setShowNewPassword(!showNewPassword)}
+                                        >
+                                            {showNewPassword ? "Ocultar" : "Mostrar"}
+                                        </button>
+                                        </div>
                                     </div>
 
                                     <div className="profile-input-group">
                                         <label htmlFor="password_confirmation">Confirmar Nova Senha</label>
+                                        <div className="password-wrapper">
                                         <input
-                                            type="password"
+                                            type={showConfirmPassword ? "text" : "password"}
                                             id="password_confirmation"
                                             name="password_confirmation"
                                             value={passwordForm.password_confirmation}
@@ -405,11 +430,19 @@ function Profile() {
                                             disabled={updatingPassword}
                                             required
                                         />
+                                        <button
+                                            type="button"
+                                            className="toggle-password"
+                                            onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                                        >
+                                            {showConfirmPassword ? "Ocultar" : "Mostrar"}
+                                        </button>
+                                        </div>
                                     </div>
 
-                                    <button 
-                                        type="submit" 
-                                        className="profile-btn" 
+                                    <button
+                                        type="submit"
+                                        className="profile-btn"
                                         disabled={updatingPassword}
                                     >
                                         {updatingPassword ? "Alterando..." : "Alterar Senha"}
@@ -449,7 +482,7 @@ function Profile() {
                             <p>
                                 Esta ação <strong>NÃO</strong> pode ser desfeita. Por favor, confirme que deseja excluir permanentemente sua conta e todos os dados associados.
                             </p>
-                            
+
                             {deleteFeedback.message && (
                                 <div className={`profile-alert ${deleteFeedback.type}`}>
                                     {deleteFeedback.message}
@@ -461,8 +494,9 @@ function Profile() {
                                     <label htmlFor="confirmPassword">
                                         Para confirmar, digite sua senha atual abaixo:
                                     </label>
+                                    <div className="password-wrapper">
                                     <input
-                                        type="password"
+                                        type={showConfirmPasswordDeleteAccount ? "text" : "password"}
                                         id="confirmPassword"
                                         value={deleteConfirmPassword}
                                         onChange={(e) => setDeleteConfirmPassword(e.target.value)}
@@ -471,6 +505,14 @@ function Profile() {
                                         required
                                         autoFocus
                                     />
+                                        <button
+                                            type="button"
+                                            className="toggle-password"
+                                            onClick={() => setShowConfirmPasswordDeleteAccount(!showConfirmPasswordDeleteAccount)}
+                                        >
+                                            {showConfirmPasswordDeleteAccount ? "Ocultar" : "Mostrar"}
+                                        </button>
+                                    </div>
                                 </div>
 
                                 <div className="modal-actions">
