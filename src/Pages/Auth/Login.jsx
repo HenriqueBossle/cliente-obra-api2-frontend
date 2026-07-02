@@ -10,16 +10,44 @@ function Login() {
         email: '',
         password: '',
     });
-
+    const [error, setError] = useState(null);
+    const [showResend, setShowResend] = useState(false);
+    const [resending, setResending] = useState(false);
 
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
     };
 
+    const handleResendVerification = async () => {
+        if (!formData.email) {
+            alert("Insira seu e-mail para reenviar a verificação.");
+            return;
+        }
+        setResending(true);
+        try {
+            const response = await api.post('/email/resend-verification', {
+                email: formData.email
+            });
+            alert(response.data.message || "E-mail de verificação reenviado com sucesso.");
+            setError(null);
+            setShowResend(false);
+        } catch (err) {
+            if (err.response && err.response.data && err.response.data.message) {
+                alert("Erro: " + err.response.data.message);
+            } else {
+                alert("Erro ao reenviar e-mail de verificação. Tente novamente.");
+            }
+        } finally {
+            setResending(false);
+        }
+    };
+
     const handleLogin = async (e) => {
         e.preventDefault();
 
-        setIsLoading(true)
+        setIsLoading(true);
+        setError(null);
+        setShowResend(false);
 
         const payload = {
             ...formData,
@@ -42,14 +70,17 @@ function Login() {
             navigate("/");
 
         } catch (error) {
-            if (error.response && error.response.status === 422) {
+            if (error.response && error.response.status === 403) {
+                setError(error.response.data.message || "Verifique seu e-mail antes de fazer login.");
+                setShowResend(true);
+            } else if (error.response && error.response.status === 422) {
                 const validationErrors = error.response.data.errors;
                 const errorMessage = Object.values(validationErrors).flat().join(", ");
-                alert("Erro de validação: " + errorMessage);
+                setError("Erro de validação: " + errorMessage);
             } else if (error.response && error.response.status === 401) {
-                alert("Credenciais inválidas. Verifique seu e-mail e senha.");
+                setError("Credenciais inválidas. Verifique seu e-mail e senha.");
             } else {
-                alert("Ocorreu um erro inesperado. Tente novamente mais tarde.");
+                setError("Ocorreu um erro inesperado. Tente novamente mais tarde.");
             }
         } finally {
             setIsLoading(false)
@@ -62,6 +93,44 @@ function Login() {
             <div className="register-card">
                 <h1>ClienteObra</h1>
                 <p>Entre na sua conta para gerenciar suas obras</p>
+
+                {error && (
+                    <div className="login-error-message" style={{
+                        backgroundColor: 'rgba(231, 76, 60, 0.1)',
+                        color: '#e74c3c',
+                        padding: '12px',
+                        borderRadius: 'var(--border-radius-sm)',
+                        marginBottom: '15px',
+                        fontSize: '0.9rem',
+                        borderLeft: '4px solid #e74c3c',
+                        display: 'flex',
+                        flexDirection: 'column',
+                        gap: '8px',
+                        textAlign: 'left'
+                    }}>
+                        <span>{error}</span>
+                        {showResend && (
+                            <button
+                                type="button"
+                                onClick={handleResendVerification}
+                                disabled={resending}
+                                style={{
+                                    background: 'none',
+                                    border: 'none',
+                                    color: 'var(--construction-orange-hover)',
+                                    textDecoration: 'underline',
+                                    cursor: 'pointer',
+                                    fontWeight: 'bold',
+                                    padding: 0,
+                                    textAlign: 'left',
+                                    fontSize: '0.85rem'
+                                }}
+                            >
+                                {resending ? "Reenviando..." : "Reenviar e-mail de verificação"}
+                            </button>
+                        )}
+                    </div>
+                )}
 
                 {/* Evento apenas aqui no onSubmit */}
                 <form onSubmit={handleLogin}>
