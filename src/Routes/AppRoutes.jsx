@@ -3,7 +3,7 @@ import App from "../App"
 import Home from "../Pages/Home"
 import Login from "../Pages/Auth/Login"
 import Register from "../Pages/Auth/Register"
-import EmailVerificado from "../Pages/Auth/EmailVerificado"
+import EmailVerificado from "../Pages/Auth/EmailVerified"
 import Navbar from "../Components/Navbar"
 import AllConstructions from "../Pages/AllConstructions"
 import Create from "../Pages/Create"
@@ -12,6 +12,7 @@ import ShowConstruction from "../Pages/ShowConstruction"
 import EditConstruction from "../Pages/EditConstruction"
 import Profile from "../Pages/Profile"
 import { AuthProvider } from "../context/AuthContext"
+import EmailVerified from "../Pages/Auth/EmailVerified"
 
 function AppRoutes() {
     return (
@@ -24,8 +25,8 @@ function AppRoutes() {
                 
                 <Route path="/login" element={<Login />} />
                 <Route path="/register" element={<Register />} />
-                <Route path="/email-verificado" element={<EmailVerificado />} />
-                <Route path="/email-verificado/:id/:hash" element={<EmailVerificado />} />
+                <Route path="/email-verified" element={<EmailVerified />} />
+                <Route path="/email-verified/:id/:hash" element={<EmailVerified />} />
 
                 {/* Rotas protegidas */}
                 <Route path="/profile" element={
