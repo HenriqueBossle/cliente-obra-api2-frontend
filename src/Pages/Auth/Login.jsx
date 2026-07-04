@@ -53,7 +53,6 @@ function Login() {
             ...formData,
             device_name: navigator.userAgent.split(" ")[1] // Gera algo como "Browser Mozilla" ou você pode fixar uma string como "React Web"
         };
-        console.log(payload)
         try {
             const response = await api.post('/login', payload, {
                 headers: {
@@ -167,6 +166,21 @@ function Login() {
                             </button>
                         </div>
                     </fieldset>
+
+                    <div style={{ textAlign: 'right', marginBottom: '12px', marginTop: '-6px' }}>
+                        <Link
+                            to="/forgot-password"
+                            style={{
+                                color: 'var(--construction-orange-hover)',
+                                fontSize: '0.85rem',
+                                fontWeight: '600',
+                                textDecoration: 'none',
+                                fontFamily: 'var(--font-body)',
+                            }}
+                        >
+                            Esqueci minha senha?
+                        </Link>
+                    </div>
 
                     {/* Removido o onClick daqui */}
                     <button type="submit" className="Login-btn" disabled={isLoading}>

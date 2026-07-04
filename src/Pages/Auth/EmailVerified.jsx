@@ -3,7 +3,7 @@ import { Link, useParams, useSearchParams } from "react-router-dom";
 import api from "../../Api/api";
 import "./Register.css";
 
-function EmailVerificado() {
+function EmailVerified() {
     const { id: routeId, hash: routeHash } = useParams();
     const [searchParams] = useSearchParams();
     const [status, setStatus] = useState("verifying"); // verifying, success, error
@@ -99,4 +99,4 @@ function EmailVerificado() {
     );
 }
 
-export default EmailVerificado;
+export default EmailVerified;
