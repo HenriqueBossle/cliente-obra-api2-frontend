@@ -4,6 +4,8 @@ import Home from "../Pages/Home"
 import Login from "../Pages/Auth/Login"
 import Register from "../Pages/Auth/Register"
 import EmailVerificado from "../Pages/Auth/EmailVerified"
+import ForgotPassword from "../Pages/Auth/ForgotPassword"
+import ResetPassword from "../Pages/Auth/ResetPassword"
 import Navbar from "../Components/Navbar"
 import AllConstructions from "../Pages/AllConstructions"
 import Create from "../Pages/Create"
@@ -27,6 +29,8 @@ function AppRoutes() {
                 <Route path="/register" element={<Register />} />
                 <Route path="/email-verified" element={<EmailVerified />} />
                 <Route path="/email-verified/:id/:hash" element={<EmailVerified />} />
+                <Route path="/forgot-password" element={<ForgotPassword />} />
+                <Route path="/reset-password" element={<ResetPassword />} />
 
                 {/* Rotas protegidas */}
                 <Route path="/profile" element={
