@@ -10,7 +10,7 @@ function ResetPassword() {
     // Pré-preenche o e-mail se vier via state do ForgotPassword
     const [formData, setFormData] = useState({
         email: location.state?.email || "",
-        token: "",
+        otp: "",
         password: "",
         password_confirmation: "",
     });
@@ -44,7 +44,7 @@ function ResetPassword() {
         try {
             await api.post("/auth/reset-password", {
                 email: formData.email,
-                token: formData.token,
+                otp: formData.otp,
                 password: formData.password,
                 password_confirmation: formData.password_confirmation,
             });
@@ -130,9 +130,9 @@ function ResetPassword() {
                                 <div className="input-group">
                                     <input
                                         type="text"
-                                        name="token"
+                                        name="otp"
                                         placeholder="Código recebido por e-mail"
-                                        value={formData.token}
+                                        value={formData.otp}
                                         onChange={handleChange}
                                         required
                                         autoComplete="one-time-code"

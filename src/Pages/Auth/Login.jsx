@@ -53,7 +53,6 @@ function Login() {
             ...formData,
             device_name: navigator.userAgent.split(" ")[1] // Gera algo como "Browser Mozilla" ou você pode fixar uma string como "React Web"
         };
-        console.log(payload)
         try {
             const response = await api.post('/login', payload, {
                 headers: {

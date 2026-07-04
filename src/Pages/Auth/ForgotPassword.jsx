@@ -35,6 +35,8 @@ function ForgotPassword() {
         } finally {
             setIsLoading(false);
         }
+
+        
     };
 
     return (
