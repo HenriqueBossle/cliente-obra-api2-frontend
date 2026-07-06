@@ -13,6 +13,7 @@ import ProtectedRoute from "./ProtectedRoutes"
 import ShowConstruction from "../Pages/ShowConstruction"
 import EditConstruction from "../Pages/EditConstruction"
 import Profile from "../Pages/Profile"
+import Feedback from "../Pages/Feedback"
 import { AuthProvider } from "../context/AuthContext"
 import EmailVerified from "../Pages/Auth/EmailVerified"
 
@@ -36,6 +37,11 @@ function AppRoutes() {
                 <Route path="/profile" element={
                     <ProtectedRoute>
                         <Profile />
+                    </ProtectedRoute>
+                } />
+                <Route path="/feedback" element={
+                    <ProtectedRoute>
+                        <Feedback />
                     </ProtectedRoute>
                 } />
                 <Route path="/allconstructions" element={
