@@ -51,6 +51,10 @@ function Navbar() {
                             Perfil
                         </Link>
 
+                        <Link to="/feedback">
+                            Feedback
+                        </Link>
+
                         <button onClick={handleLogout}>
                             Sair
                         </button>
