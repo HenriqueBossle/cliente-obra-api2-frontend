@@ -17,7 +17,8 @@ function Create(){
         address: "",
         type: "",
         status: "",
-        volume: "",
+        concrete_volume: "",
+        mortar_volume: "",
         start_date: "",
         finish_date: "",
         notes: ""
@@ -60,7 +61,8 @@ function Create(){
             address: "",
             type: "",
             status: "",
-            volume: "",
+            concrete_volume: "",
+            mortar_volume: "",
             start_date: "",
             finish_date: "",
             notes: ""
@@ -168,14 +170,23 @@ function Create(){
                             onChange={handleChange}
                         />
                       
-                        <label htmlFor="volume">Volume em m³</label>
+                        <label htmlFor="concrete_volume">Volume de concreto em m³</label>
                         <input
                             type="number"
-                            name="volume"
+                            name="concrete_volume"
                             placeholder="Ex: 1.5"
-                            value={data.volume}
+                            value={data.concrete_volume}
                             onChange={handleChange}
                         />
+                        <label htmlFor="mortar_volume">Volume de argamassa em m³</label>
+                        <input
+                            type="number"
+                            name="mortar_volume"
+                            placeholder="Ex: 1.5"
+                            value={data.mortar_volume}
+                            onChange={handleChange}
+                        />
+
                         <label htmlFor="start_date">Data de Início</label>
 
                         <input

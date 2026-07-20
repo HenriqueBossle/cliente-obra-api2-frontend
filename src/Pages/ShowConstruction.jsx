@@ -134,7 +134,8 @@ function ShowConstruction(){
                             address={construction.address}
                             type={construction.type}
                             status={construction.status}
-                            volume={construction.volume}
+                            concrete_volume={construction.concrete_volume}
+                            mortar_volume={construction.mortar_volume}
                             start_date={construction.start_date}
                             finish_date={construction.finish_date}
                             notes={construction.notes}

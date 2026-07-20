@@ -16,7 +16,8 @@ function Card({
     address,
     type,
     status,
-    volume,
+    concrete_volume,
+    mortar_volume,
     start_date,
     finish_date,
     notes,
@@ -127,7 +128,11 @@ const format_finish = finish_date
                 </p>
 
                 <p>
-                    <strong>Volume em m³:</strong> {Number(volume).toFixed(1)}
+                    <strong>Volume de concreto em m³:</strong> {Number(concrete_volume).toFixed(1)}
+                </p>
+
+                <p>
+                    <strong>Volume de argamassa em m³:</strong> {Number(mortar_volume).toFixed(1)}
                 </p>
 
                 <p>
