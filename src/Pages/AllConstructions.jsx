@@ -182,7 +182,8 @@ function AllConstructions() {
                             address={c.address}
                             type={c.type}
                             status={c.status}
-                            volume={c.volume}
+                            concrete_volume={c.concrete_volume}
+                            mortar_volume={c.mortar_volume}
                             start_date={c.start_date}
                             finish_date={c.finish_date}
                             notes={c.notes}
