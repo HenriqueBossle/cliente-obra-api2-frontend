@@ -7,6 +7,7 @@ import EmailVerificado from "../Pages/Auth/EmailVerified"
 import ForgotPassword from "../Pages/Auth/ForgotPassword"
 import ResetPassword from "../Pages/Auth/ResetPassword"
 import Navbar from "../Components/Navbar"
+import Footer from "../Components/Footer"
 import AllConstructions from "../Pages/AllConstructions"
 import Create from "../Pages/Create"
 import ProtectedRoute from "./ProtectedRoutes"
@@ -67,6 +68,7 @@ function AppRoutes() {
                     </ProtectedRoute>
                 } />
             </Routes>
+            <Footer />
             </AuthProvider>
         </BrowserRouter>
        
