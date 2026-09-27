@@ -1,41 +1,109 @@
-# 🏗️ Cliente Obra - Front-end
+🏗️ Cliente Obra — Front-end
 
-Este é o repositório do frontend do Cliente Obra uma aplicação web desenvolvida em React para gerenciamento de clientes e obras de construção civil.
+Aplicação web desenvolvida em React para gerenciamento de clientes e obras de construção civil.
 
-🚀 Tecnologias: 
-React, 
-React Router DOM,
-Axios,
-Date-fns,
-Vite, 
-CSS3.
+O projeto possui autenticação de usuários, rotas protegidas, gerenciamento completo de obras, gerenciamento de perfil e geração de documentos em PDF. O front-end se comunica com uma API REST desenvolvida em Laravel, responsável pela autenticação, regras de negócio e persistência dos dados.
 
-✨ Funcionalidades:
-Cadastro de usuários,
-Login e Logout,
-Rotas protegidas,
-Cadastro de obras,
-Listagem de obras,
-Visualização de detalhes,
-Edição de obras,
-Exclusão de obras,
-Gerenciamento de perfil,
-Interface responsiva,
-Geração de PDF de uma ou de todas as obras cadastradas.
+🔗 https://cliente-obra-api2-frontend.vercel.app/
 
-# React + Vite
+🔗 https://github.com/HenriqueBossle/cliente-obra-api2
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+📌 Sobre o projeto
 
-Currently, two official plugins are available:
+O Cliente Obra foi desenvolvido como uma aplicação full-stack para praticar e demonstrar conceitos de desenvolvimento web moderno, principalmente:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+Desenvolvimento de interfaces com React
+Consumo de APIs REST
+Autenticação utilizando tokens
+Proteção de rotas
+CRUD completo
+Gerenciamento de estado da aplicação
+Integração entre Front-end e Back-end
+Geração de documentos PDF
+Deploy de aplicações web
 
-## React Compiler
+A aplicação permite que usuários autenticados cadastrem e gerenciem suas obras, acompanhem informações dos projetos e gerem documentos em PDF.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+✨ Funcionalidades
+🔐 Autenticação
+Cadastro de usuário
+Login
+Logout
+Autenticação através da API
+Persistência da sessão
+Rotas protegidas
+Controle de acesso às páginas autenticadas
+👤 Usuário
+Visualização do perfil
+Atualização de informações do usuário
+Gerenciamento dos dados da conta
+🏗️ Obras
+Cadastro de obras
+Listagem de obras
+Visualização dos detalhes
+Edição de obras
+Exclusão de obras
+Associação das obras ao usuário autenticado
+📄 PDF
+Geração de PDF de uma obra
+Geração de PDF contendo todas as obras cadastradas
+🎨 Interface
+Interface responsiva
+Componentes reutilizáveis
+Navegação utilizando React Router
+Ícones utilizando Font Awesome
+Formatação de datas
+Feedback visual para ações do usuário
+🛠️ Tecnologias utilizadas
+Front-end
+Tecnologia	Utilização
+React	Construção da interface
+React Router DOM	Roteamento e páginas protegidas
+Axios	Comunicação com a API REST
+Vite	Ambiente de desenvolvimento e build
+JavaScript	Lógica da aplicação
+CSS3	Estilização
+date-fns	Manipulação e formatação de datas
+Font Awesome	Ícones
+Back-end
 
-## Expanding the ESLint configuration
+O front-end foi desenvolvido para consumir uma API REST em Laravel, responsável pela autenticação e gerenciamento dos dados.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Principais tecnologias do backend:
+
+PHP
+Laravel
+Laravel Sanctum
+Eloquent ORM
+MySQL/PostgreSQL
+REST API
+🔄 Arquitetura
+
+A aplicação utiliza uma arquitetura separando o front-end da API:
+
+┌─────────────────────────┐
+│       React + Vite      │
+│                         │
+│  Interface / Componentes│
+│  React Router           │
+│  Axios                  │
+└────────────┬────────────┘
+             │
+             │ HTTP / REST API
+             ▼
+┌─────────────────────────┐
+│       Laravel API       │
+│                         │
+│ Controllers             │
+│ Models / Eloquent       │
+│ Authentication / Sanctum│
+│ Business Rules          │
+└────────────┬────────────┘
+             │
+             ▼
+┌─────────────────────────┐
+│        Database         │
+│     PostgreSQL/MySQL    │
+└─────────────────────────┘
+
+Essa separação permite que o front-end e o back-end sejam desenvolvidos, testados e hospedados de forma independente.
