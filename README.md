@@ -4,9 +4,9 @@ Aplicação web desenvolvida em React para gerenciamento de clientes e obras de 
 
 O projeto possui autenticação de usuários, rotas protegidas, gerenciamento completo de obras, gerenciamento de perfil e geração de documentos em PDF. O front-end se comunica com uma API REST desenvolvida em Laravel, responsável pela autenticação, regras de negócio e persistência dos dados.
 
-🔗 https://cliente-obra-api2-frontend.vercel.app/
+🔗 Link do deploy: https://cliente-obra-api2-frontend.vercel.app/
 
-🔗 https://github.com/HenriqueBossle/cliente-obra-api2
+🔗 Repositório do back-end: https://github.com/HenriqueBossle/cliente-obra-api2
 
 📌 Sobre o projeto
 
