@@ -1,4 +1,4 @@
-```text
+
 # 🏗️ Cliente Obra — Front-end
 
 Aplicação web desenvolvida em **React** para gerenciamento de clientes e obras de construção civil.
@@ -132,4 +132,4 @@ Essa separação permite que o front-end e o back-end sejam desenvolvidos, testa
 ## 👨‍💻 Autor
 
 Desenvolvido por [Henrique Bossle](https://github.com/HenriqueBossle)
-``
+
