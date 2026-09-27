@@ -1,3 +1,4 @@
+```text
 # 🏗️ Cliente Obra — Front-end
 
 Aplicação web desenvolvida em **React** para gerenciamento de clientes e obras de construção civil.
@@ -70,7 +71,7 @@ A aplicação permite que usuários autenticados cadastrem e gerenciem suas obra
 ### Front-end
 
 | Tecnologia | Utilização |
-|---|---|
+| --- | --- |
 | React | Construção da interface |
 | React Router DOM | Roteamento e rotas protegidas |
 | Axios | Comunicação com a API REST |
@@ -96,6 +97,8 @@ O front-end consome uma API REST em Laravel, responsável pela autenticação e 
 ## 🔄 Arquitetura
 
 A aplicação utiliza uma arquitetura separando o front-end da API:
+
+```text
 ┌─────────────────────────┐
 │       React + Vite      │
 │                         │
@@ -103,9 +106,9 @@ A aplicação utiliza uma arquitetura separando o front-end da API:
 │  React Router           │
 │  Axios                  │
 └────────────┬────────────┘
-│
-│  HTTP / REST API
-▼
+             │
+             │  HTTP / REST API
+             ▼
 ┌─────────────────────────┐
 │       Laravel API       │
 │                         │
@@ -114,12 +117,19 @@ A aplicação utiliza uma arquitetura separando o front-end da API:
 │  Authentication/Sanctum │
 │  Business Rules         │
 └────────────┬────────────┘
-│
-▼
+             │
+             ▼
 ┌─────────────────────────┐
 │        Database         │
 │     PostgreSQL/MySQL    │
 └─────────────────────────┘
-plain
+```
 
 Essa separação permite que o front-end e o back-end sejam desenvolvidos, testados e hospedados de forma independente.
+
+---
+
+## 👨‍💻 Autor
+
+Desenvolvido por [Henrique Bossle](https://github.com/HenriqueBossle)
+``
