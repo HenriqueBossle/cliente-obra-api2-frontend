@@ -101,20 +101,18 @@ function Profile() {
                 }
             });
 
-            // Update local user state
-            if (response.data && response.data.user) {
-                setUser(response.data.user);
-            } else {
-                setUser({
-                    ...user,
-                    name: profileForm.name,
-                    email: profileForm.email
-                });
-            }
+            const updatedUser = response.data.user;
+            setUser(updatedUser);
+            setProfileForm({
+                name: updatedUser.name || "",
+                email: updatedUser.pending_email || updatedUser.email || ""
+            });
 
             setProfileFeedback({
                 type: "success",
-                message: "Perfil atualizado com sucesso!"
+                message: updatedUser.pending_email
+                    ? `${response.data.message} E-mail aguardando confirmação: ${updatedUser.pending_email}`
+                    : response.data.message
             });
 
             // Auto clear success message after 5 seconds
@@ -124,13 +122,18 @@ function Profile() {
         } catch (error) {
             console.error("Erro ao atualizar perfil:", error);
             if (error.response && error.response.status === 422) {
-                const validationErrors = error.response.data.errors;
-                const errorMessage = Object.values(validationErrors).flat().join(", ");
-                setProfileFeedback({ type: "error", message: `Erro de validação: ${errorMessage}` });
+                const validationErrors = error.response.data?.errors;
+                const errorMessage = validationErrors
+                    ? Object.values(validationErrors).flat().join(", ")
+                    : "";
+                setProfileFeedback({
+                    type: "error",
+                    message: errorMessage || error.response.data?.message || "Os dados informados são inválidos."
+                });
             } else {
                 setProfileFeedback({
                     type: "error",
-                    message: "Ocorreu um erro ao atualizar o perfil. Tente novamente."
+                    message: error.response?.data?.message || "Ocorreu um erro ao atualizar o perfil. Tente novamente."
                 });
             }
         } finally {
