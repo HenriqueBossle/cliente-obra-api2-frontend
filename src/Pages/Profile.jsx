@@ -87,6 +87,7 @@ function Profile() {
     const handleProfileSubmit = async (e) => {
         e.preventDefault();
         setProfileFeedback({ type: "", message: "" });
+        const emailChanged = profileForm.email.trim().toLowerCase() !== (user.email || "").trim().toLowerCase();
 
         if (!profileForm.name.trim() || !profileForm.email.trim()) {
             setProfileFeedback({ type: "error", message: "Os campos Nome e E-mail são obrigatórios." });
@@ -114,7 +115,9 @@ function Profile() {
 
             setProfileFeedback({
                 type: "success",
-                message: "Perfil atualizado com sucesso!"
+                message: emailChanged
+                    ? `Perfil atualizado. Para concluir a troca, verifique o novo endereço de e-mail: ${profileForm.email.trim()}.`
+                    : "Perfil atualizado com sucesso!"
             });
 
             // Auto clear success message after 5 seconds
