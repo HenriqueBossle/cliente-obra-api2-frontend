@@ -1,4 +1,5 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom"
+import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom"
+import { useEffect } from "react"
 import App from "../App"
 import Home from "../Pages/Home"
 import Login from "../Pages/Auth/Login"
@@ -19,9 +20,20 @@ import { AuthProvider } from "../context/AuthContext"
 import EmailVerified from "../Pages/Auth/EmailVerified"
 import NotFound from "../Pages/NotFound"
 
+function ScrollToTop() {
+    const { pathname } = useLocation();
+
+    useEffect(() => {
+        window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+    }, [pathname]);
+
+    return null;
+}
+
 function AppRoutes() {
     return (
         <BrowserRouter>
+        <ScrollToTop />
         <AuthProvider>
             <Navbar />
             <Routes>
