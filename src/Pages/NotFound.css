@@ -1,0 +1,60 @@
+.not-found-page {
+    min-height: 65vh;
+    display: grid;
+    place-items: center;
+    padding: 40px 20px;
+    position: relative;
+    background-image: url('https://images.unsplash.com/photo-1504307651254-35680f356dfd?q=80&w=2070&auto=format&fit=crop');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+.not-found-page::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: var(--bg-dark-overlay);
+}
+
+.not-found-card {
+    position: relative;
+    z-index: 1;
+    width: min(100%, 560px);
+    padding: 48px 32px;
+    border-radius: 16px;
+    background: #fff;
+    box-shadow: 0 8px 28px rgba(18, 24, 36, 0.12);
+    text-align: center;
+}
+
+.not-found-code {
+    margin: 0 0 8px;
+    color: #f39c12;
+    font-size: 3rem;
+    font-weight: 800;
+}
+
+.not-found-card h1 {
+    margin: 0 0 12px;
+    color: #18202c;
+}
+
+.not-found-card p:not(.not-found-code) {
+    margin: 0 0 24px;
+    color: #596575;
+}
+
+.not-found-home-link {
+    display: inline-block;
+    padding: 12px 20px;
+    border-radius: 8px;
+    background: #f39c12;
+    color: #fff;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.not-found-home-link:hover {
+    background: #d98300;
+}

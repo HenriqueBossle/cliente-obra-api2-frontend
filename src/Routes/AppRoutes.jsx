@@ -17,6 +17,7 @@ import Profile from "../Pages/Profile"
 import Feedback from "../Pages/Feedback"
 import { AuthProvider } from "../context/AuthContext"
 import EmailVerified from "../Pages/Auth/EmailVerified"
+import NotFound from "../Pages/NotFound"
 
 function AppRoutes() {
     return (
@@ -67,6 +68,8 @@ function AppRoutes() {
                         <EditConstruction />
                     </ProtectedRoute>
                 } />
+
+                <Route path="*" element={<NotFound />} />
             </Routes>
             <Footer />
             </AuthProvider>
