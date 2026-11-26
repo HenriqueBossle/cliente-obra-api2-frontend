@@ -1,11 +1,12 @@
 import { useState } from "react";
-import { createCookieSessionStorage, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import "./Create.css";
 import api from "../Api/api";
 
 function Create(){
     const navigate = useNavigate();
     const [isLoading, setIsLoading] = useState(false)
+    const [cpfError, setCpfError] = useState("");
 
     const [data, setData] = useState({
         construction_name: "",
@@ -25,6 +26,7 @@ function Create(){
     })
 
     const handleChange = (e) => {
+        if (e.target.name === "cpf_cnpj") setCpfError("");
         setData({ ...data, [e.target.name]: e.target.value });
     };
 
@@ -43,30 +45,28 @@ function Create(){
             );
          
             alert("Obra adicionada com sucesso!!!")
+            setData({
+                construction_name: "", builder_name: "", builder_phone: "", cpf_cnpj: "",
+                sitemanager_name: "", sitemanager_phone: "", address: "", type: "", status: "",
+                concrete_volume: "", mortar_volume: "", start_date: "", finish_date: "", notes: ""
+            });
+            setCpfError("");
             navigate("/allconstructions")
         }catch(error){
             console.error("Erro ao criar obra:", error);
+            const cpfMessage = error.response?.data?.errors?.cpf_cnpj;
+            if (cpfMessage) {
+                setCpfError(Array.isArray(cpfMessage) ? cpfMessage[0] : cpfMessage);
+            } else if (/cpf|cnpj/i.test(error.response?.data?.message || "")) {
+                setCpfError(error.response.data.message);
+            } else {
+                alert(error.response?.data?.message || "Erro ao criar obra.");
+            }
         } finally {
             setIsLoading(false)
         }
         
 
-        setData({
-            construction_name: "",
-            builder_name: "",
-            builder_phone: "",
-            cpf_cnpj: "",
-            sitemanager_name: "",
-            sitemanager_phone: "", 
-            address: "",
-            type: "",
-            status: "",
-            concrete_volume: "",
-            mortar_volume: "",
-            start_date: "",
-            finish_date: "",
-            notes: ""
-        })
     }
 
     
@@ -124,7 +124,10 @@ function Create(){
                             placeholder="Ex: 000.000.000-00 ou 00.000.000/0000-00"
                             value={data.cpf_cnpj}
                             onChange={handleChange}
+                            aria-invalid={Boolean(cpfError)}
+                            aria-describedby={cpfError ? "cpf_cnpj-error" : undefined}
                         />
+                        {cpfError && <span id="cpf_cnpj-error" className="field-error" role="alert">{cpfError}</span>}
 
                         <label htmlFor="sitemanager_name">Nome do Responsável</label>
                         <input

@@ -27,6 +27,7 @@ function EditConstruction() {
     const [saving, setSaving] = useState(false);
 
     const [error, setError] = useState(null);
+    const [cpfError, setCpfError] = useState("");
 
     useEffect(() => {
         const fetchConstruction = async () => {
@@ -76,6 +77,7 @@ function EditConstruction() {
     }, [id]);
 
     const handleChange = (e) => {
+        if (e.target.name === "cpf_cnpj") setCpfError("");
         setData({ ...data, [e.target.name]: e.target.value });
     };
 
@@ -85,6 +87,7 @@ function EditConstruction() {
         if (saving) return;
 
         setSaving(true);
+        setCpfError("");
         
 
         try {
@@ -101,7 +104,14 @@ function EditConstruction() {
             navigate(`/construction/${id}`);
         } catch (err) {
             console.error("Erro ao atualizar obra:", err);
-            alert(err.response?.data?.message || "Erro ao salvar alterações da obra.");
+            const cpfMessage = err.response?.data?.errors?.cpf_cnpj;
+            if (cpfMessage) {
+                setCpfError(Array.isArray(cpfMessage) ? cpfMessage[0] : cpfMessage);
+            } else if (/cpf|cnpj/i.test(err.response?.data?.message || "")) {
+                setCpfError(err.response.data.message);
+            } else {
+                alert(err.response?.data?.message || "Erro ao salvar alterações da obra.");
+            }
         } finally {
             setSaving(false);
         }
@@ -180,7 +190,10 @@ function EditConstruction() {
                                     placeholder="CPF ou CNPJ"
                                     value={data.cpf_cnpj}
                                     onChange={handleChange}
+                                    aria-invalid={Boolean(cpfError)}
+                                    aria-describedby={cpfError ? "cpf_cnpj-error" : undefined}
                                 />
+                                {cpfError && <span id="cpf_cnpj-error" className="field-error" role="alert">{cpfError}</span>}
                             </div>
 
                             <div>

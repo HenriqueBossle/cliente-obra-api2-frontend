@@ -31,3 +31,8 @@
 .search-bar button:hover {
     background: #0056b3;
 }
+
+.search-bar button:disabled {
+    opacity: 0.65;
+    cursor: wait;
+}

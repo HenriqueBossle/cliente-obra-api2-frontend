@@ -4,10 +4,18 @@ import "./SearchBar.css";
 function SearchBar({ onSearch, placeholder }) {
 
     const [search, setSearch] = useState("");
+    const [searching, setSearching] = useState(false);
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        onSearch(search);
+        if (searching) return;
+
+        setSearching(true);
+        try {
+            await onSearch(search);
+        } finally {
+            setSearching(false);
+        }
     };
 
     return (
@@ -19,8 +27,8 @@ function SearchBar({ onSearch, placeholder }) {
                 onChange={(e) => setSearch(e.target.value)}
             />
 
-            <button type="submit">
-                Pesquisar
+            <button type="submit" disabled={searching}>
+                {searching ? "Pesquisando..." : "Pesquisar"}
             </button>
         </form>
     );

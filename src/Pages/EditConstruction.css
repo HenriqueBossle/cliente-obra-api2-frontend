@@ -101,6 +101,15 @@ textarea:focus {
   box-shadow: 0 0 0 3px rgba(243, 156, 18, 0.15);
 }
 
+.field-error {
+  color: #c0392b;
+  font-size: 0.875rem;
+}
+
+.form-grid input[aria-invalid="true"] {
+  border-color: #c0392b;
+}
+
 textarea {
   min-height: 120px;
   resize: vertical;

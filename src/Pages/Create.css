@@ -83,6 +83,16 @@ textarea::placeholder {
   opacity: 0.7;
 }
 
+.field-error {
+  color: #c0392b;
+  font-size: 0.875rem;
+  margin-top: -12px;
+}
+
+.form-grid input[aria-invalid="true"] {
+  border-color: #c0392b;
+}
+
 .form-grid input:focus,
 .form-grid select:focus,
 textarea:focus {
